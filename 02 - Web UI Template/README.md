@@ -23,7 +23,7 @@ Azureサービスに接続するようにWebアプリを構成するには、*ap
 ### 必須フィールド
 
 ```json
-  // Required fields
+  // 必須フィールド
   "SearchServiceName": "",
   "SearchApiKey": "",
   "SearchIndexName": "",
@@ -41,7 +41,7 @@ Azureサービスに接続するようにWebアプリを構成するには、*ap
 4. **SearchIndexerName** - Azure Cognitive Searchインデクサーの名前
 5. **StorageAccountName** - Azure Blob Storageアカウントの名前
 6. **StorageAccountKey** - Azure Blob Storageアカウントのキー
-7. **StorageContainerAddress** - ドキュメントが保存されているストレージコンテナーへのURL。これは次の形式である必要があります：*https://*storageaccountname*.blob.core.windows.net/*containername**
+7. **StorageContainerAddress** - ドキュメントが保存されているストレージコンテナーへのURL。これは次の形式である必要があります：**https://*storageaccountname*.blob.core.windows.net/*containername***
 8. **KeyField** - 検索インデックスのキーフィールドです。これは、インデックスでキードキュメントIDとして指定されたフィールドに設定する必要があります。デフォルトでは、これは*metadata_storage_path*です。
 9. **IsPathBase64Encoded** - デフォルトでは、metadata_storage_pathがキーであり、base64でエンコードされるため、デフォルトでtrueに設定されています。キーがエンコードされていない場合は、これをfalseに設定します。
 
