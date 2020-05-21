@@ -17,7 +17,7 @@ urlFragment: azure-search-knowledge-mining
 
 ## このレポジトリについて
 
-ナレッジマイニング ソリューションアクセラレータへようこそ！ このアクセラレータは、[Azure Cognitive Search](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro)を使用して初期ナレッジマイニングプロトタイプをすばやく構築するために必要なすべてのリソースを開発者に提供します。このアクセラレーターを使用して、独自のデータで開発作業を開始したり、学習ツールとして使用して、Cognitive Searchを使用してビジネスの固有のニーズを満たす方法をよりよく理解できます。
+ナレッジマイニング ソリューションアクセラレーターへようこそ！ このアクセラレーターは、[Azure Cognitive Search](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro)を使用して初期ナレッジマイニングプロトタイプをすばやく構築するために必要なすべてのリソースを開発者に提供します。このアクセラレーターを使用して、独自のデータで開発作業を開始したり、学習ツールとして使用して、Cognitive Searchを使用してビジネスの固有のニーズを満たす方法をよりよく理解できます。
 
 このリポジトリでは、適切なAzureリソースをデプロイするためのテンプレート、最初の検索インデックスを作成するためのアセット、カスタムスキルを使用するためのテンプレート、基本的なWebなど、Cognitive Search Solutionをすばやく作成するために必要なすべての作成物が提供されています アプリ、およびPowerBIレポートで検索ソリューションのパフォーマンスを監視します。ドキュメント全体にベストプラクティスを盛り込み、ガイドを提供します。Cognitive Searchを使用すると、デジタルデータ（ドキュメントやテキストファイルなど）とアナログデータ（画像やスキャンしたドキュメントなど）の両方に簡単にインデックスを付けることができます。
 
@@ -34,7 +34,7 @@ urlFragment: azure-search-knowledge-mining
 * Azure サブスクリプション - [無料で作成](https://azure.microsoft.com/free/)
 * [Visual Studio 2017 以降](https://visualstudio.microsoft.com/downloads/)
 * [Postman](https://www.getpostman.com/) APIコール作成用
-* Azure Search Indexersでサポートされている任意のデータソースにアップロードされたドキュメント。 これらの一覧については、[Indexers in Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-indexer-overview)を参照してください。このソリューションアクセラレータは、Azure Blob Storageをソースデータファイルのコンテナーとして使用します。**sample_documents/** フォルダにサンプルドキュメントがあります。
+* Azure Search Indexersでサポートされている任意のデータソースにアップロードされたドキュメント。 これらの一覧については、[Indexers in Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-indexer-overview)を参照してください。このソリューションアクセラレーターは、Azure Blob Storageをソースデータファイルのコンテナーとして使用します。**sample_documents/** フォルダにサンプルドキュメントがあります。
 
 このガイドで提供される指示は、Azureポータル、Azure Functions、Azure Cognitive Search、Visual StudioおよびPostmanの基本的な実用知識があることを前提としています。追加のトレーニングとサポートについては、以下を参照してください。
 
