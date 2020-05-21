@@ -1,69 +1,69 @@
-# Creating a Search Index in the Azure Portal
+# Azure Portalで検索インデックスを作成する
 
-The steps below will walk you through creating a search index in the Azure Portal using the [import data wizard](https://docs.microsoft.com/en-us/azure/search/search-import-data-portal). For more detailed information on each of the steps, see the the [Blob Storage Quickstart](https://docs.microsoft.com/en-us/azure/search/cognitive-search-quickstart-blob).
+以下の手順では、[データのインポートウィザード](https://docs.microsoft.com/azure/search/search-import-data-portal)を使用して、Azureポータルで検索インデックスを作成する手順を説明します。各手順の詳細については、[Blob Storageクイックスタート](https://docs.microsoft.com/azure/search/cognitive-search-quickstart-blob)を参照してください。
 
-The web app you'll spin up in the next step expects to receive several fields to work properly. Because of this, be sure to follow the requirements outlined below to avoid any problems during setup.
+次のステップで起動するWebアプリは、適切に機能するためにいくつかのフィールドを受け取ることを期待しています。このため、セットアップ中に問題が発生しないように、以下に概説する要件に従ってください。
 
-## Requirements
+## 必要条件
 
-If you choose to create your index via the Azure Portal, set your search field properties as described in the table below:
+Azure Portal経由でインデックスを作成する場合は、次の表の説明に従って検索フィールドのプロパティを設定します。
 
-| Field					| Notes and Expectations						|
+| フィールド					|用途と注意点						|
 |-----------------------|-----------------------------------------------|
-|content				| Used to show the transcript of the files.  Should be **searchable and retrievable**  |
-|metadata_storage_path	| This should be the **key field**. 	 The storage path is used to query the blob indexer for the content so that you can "preview" the file.  Should be **retrievable**.	 If it is **base64 encoded**, make sure to specify it in the [appsettings.json](https://github.com/Azure-Samples/azure-search-knowledge-mining/tree/master/02%20-%20Web%20UI%20Template) file of the front end application.		|
-|metadata_storage_name	| The storage name is used to display the name of the file on the results page.  Should be **retrievable**.	|
-|people					| List of strings with the persons identified in the document.  Should be **facetable, filterable, searchable and retrievable**.  |
-|locations				| List of strings with the locations identified in the document. Should be **facetable, filterable, searchable and retrievable**.  |
-|organizations			| List of strings with the organizations identified in the document. Should be **facetable, filterable, searchable and retrievable**.  |
-|keyPhrases				| List of strings with the key phrases identified in the document. Should be **facetable, filterable, searchable and retrievable**.  |
+|content				| ファイルのトランスクリプトを表示するために使用されます。**searchable かつ retrievable** である必要があります。  |
+|metadata_storage_path	| これは **key field** である必要があります。ストレージパスは、コンテンツのblobインデクサーにクエリを実行してファイルを「プレビュー」できるようにするために使用されます。**retrievable** である必要があります。**base64 encoded** されている場合は、必ずフロントエンドアプリケーションのファイル[appsettings.json](https://github.com/nohanaga/azure-search-knowledge-mining/tree/master/02%20-%20Web%20UI%20Template)で指定してください。		|
+|metadata_storage_name	| ストレージ名は、結果ページにファイルの名前を表示するために使用されます。**retrievable** である必要があります。	|
+|people					| 文書で識別された人物の文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
+|locations				| ドキュメントで識別された場所を含む文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
+|organizations			| ドキュメントで識別された組織の文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
+|keyPhrases				| ドキュメントで識別されたキーフレーズを含む文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
 
-## Instructions
+## 解説
 
-Follow the steps and screenshots below to create your index.
+以下の手順とスクリーンショットに従って、インデックスを作成します。
 
-### 1.0 Navigate to you Search Service
+### 1.0 検索サービスに移動します
 
-Start by navigating to your search service in the Azure Portal:
+まず、Azureポータルで検索サービスに移動します。
 
 ![screenshot](../images/createindex-step0.PNG)
 
-### 2.0 Select Import data
+### 2.0 データのインポートを選択します
 
 ![Navigate to search service](../images/createindex-step1.PNG)
 
-### 3.0 Import Data
+### 3.0 データをインポートする
 
-#### 3.1 Select Azure Blob Storage
+#### 3.1 Azure Blob Storageを選択します
 
 ![screenshot](../images/createindex-step2.PNG)
 
-#### 3.2 Follow the wizard to connect to your storage account
+#### 3.2 ウィザードに従ってストレージアカウントに接続します
 
 ![screenshot](../images/createindex-step3.PNG)
 
-### 4.0 Add Cognitive Skills
+### 4.0 Cognitiveスキルを追加する
 
-#### 4.1 Attach Cognitive Services
+#### 4.1 Cognitive Servicesをアタッチする
 
 ![screenshot](../images/createindex-step4.PNG)
 
-#### 4.2 Add enrichments
+#### 4.2 エンリッチメントを追加する
 
 ![screenshot](../images/createindex-step5.PNG)
 
-#### 4.3 Save enrichments to knowledge store
+#### 4.3 ナレッジストアへのエンリッチメントの保存
 
 ![screenshot](../images/createindex-step6.PNG)
 
-### 5.0 Customize target index
+### 5.0 ターゲットインデックスをカスタマイズする
 
-> **Note:** This step is essential to properly configuring your index. Make sure your index looks similar to the screenshot before proceeding to the next step.
+> **Note:** この手順は、インデックスを適切に構成するために不可欠です。 次のステップに進む前に、インデックスがスクリーンショットと同じになっていることを確認してください。
 
 ![screenshot](../images/createindex-step7.PNG)
 
-### 6.0 Create an indexer
+### 6.0 インデクサーを作成する
 
 ![screenshot](../images/createindex-step8.PNG)
 
-Congratulations! You should be all set to move onto the next folder.
+Congratulations! 次のフォルダに移動する準備がすべて整っているはずです。
