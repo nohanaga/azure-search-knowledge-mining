@@ -56,7 +56,7 @@ PowerShellスクリプトは、Azureサブスクリプションに次のリソ�
 
 デフォルトでは、このPowerShellスクリプトはソリューションの基本検索サービスをプロビジョニングします。サイズ制限、スケーリング制限、価格については、[Azure Cognitive Searchの価格](https://azure.microsoft.com/pricing/details/search/)を参照し、希望の階層を選択してください。
 
-カスタムスキル開発のニーズによっては、追加のAzureリソースが必要になる場合があります。詳細については、[03 - Data Science & Custom Skills](../03%20-%20Data%20Science%20and%20Custom%20Skills/README.md)フォルダーのREADMEを参照してください。
+カスタムスキル開発のニーズによっては、追加のAzureリソースが必要になる場合があります。詳細については、[03 - データサイエンスとカスタムスキル](../03%20-%20Data%20Science%20and%20Custom%20Skills/README.md)フォルダーのREADMEを参照してください。
 
 ## 注釈
 

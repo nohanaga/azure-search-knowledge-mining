@@ -1,20 +1,20 @@
-# Search Index Creation
+# 検索インデックスの作成
 
-There are several different ways to create a search index for Azure Cognitive Search. You can choose how to deploy an index based on your skillset, your preferred tools, or your desired level of automation.
+Azure Cognitive Searchの検索インデックスを作成する方法はいくつかあります。スキルセット、優先ツール、または必要な自動化レベルに基づいて、インデックスの展開方法を選択できます。
 
->**Note:** If you ran the `deploy.ps1` script in the previous step, you've already created your search index so you can skip to the next step.
+>**Note:** 前のステップで `deploy.ps1` スクリプトを実行した場合、検索インデックスはすでに作成されていますので次のステップにスキップできます。
 
-## Prerequisites
+## 前提条件チェックリスト
 
-At this point, you should have:
+この時点で、次のものが必要です。
 
-1. Deployed the necessary resources to Azure using the ARM template or PowerShell script as described in the previous step.
-2. Uploaded your document set to Azure Storage. You can also do this later using the Web App.
+1. 前の手順で説明したように、ARMテンプレートまたはPowerShellスクリプトを使用して、必要なリソースをAzureにデプロイしました。
+2. サンプルドキュメントセットをAzure Storageにアップロードしました。後からWebアプリを使用してこれを行うこともできます。
 
-## Options for creating your index
+## インデックスを作成するためのオプション
 
-This folder includes three options for creating an index. Each of these approaches is documented in a separate file:
+このフォルダには、インデックスを作成するための3つのオプションが含まれています。これらのアプローチのそれぞれは、個別のファイルに文書化されています。
 
-1. [Create a search index using the Azure Portal](./Create-Index-AzurePortal.md)
-2. [Create a search index using PowerShell](./Create-Index-PowerShell.md)
-3. [Create a search index using Postman](./Create-Index-Postman.md)
+1. [Azure Portalを使用して検索インデックスを作成する](./Create-Index-AzurePortal.md)
+2. [PowerShellを使用して検索インデックスを作成する](./Create-Index-PowerShell.md)
+3. [Postmanを使用して検索インデックスを作成する](./Create-Index-Postman.md)
