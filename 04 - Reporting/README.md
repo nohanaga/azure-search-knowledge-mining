@@ -1,38 +1,38 @@
-# Reporting
+# レポーティング
 
-A PowerBI Template file has been created so you can quickly spin up reports based on the Cognitive Search Template UI. To create the reports, simply open **Cognitive Search.pbit** using PowerBI Desktop.
+PowerBIテンプレートファイルが作成されたため、Cognitive SearchテンプレートUIに基づいてレポートをすばやく起動できます。レポートを作成するには、PowerBI Desktopを使用して **Cognitive Search.pbit** を開くだけです。
 
-## Prerequisites
+## 前提条件
 
-1. Application Insights is used to capture the telemetry data for these reports.  If you chose to not provision Application Insights and update the *InstrumentationKey* in the web app's *appsettings.json* file, you will not have data available to run the reports in this repository.
-2. PowerBI Desktop installed on your computer
+1. Application Insightsは、これらのレポートのテレメトリデータをキャプチャするために使用されます。Application Insightsをプロビジョニングせず、Webアプリの *appsettings.json* ファイルの *InstrumentationKey* を更新することを選択した場合、このリポジトリでレポートを実行するために使用できるデータがありません。
+2. PowerBI Desktopがコンピューターにインストールされていること
 
 ## Getting Started
 
-When you open the template, you will be asked for your **Application Insights Application ID**. This Application ID can be found by going to the Azure portal -> navigating to the App Insights resource -> then clicking on API Access:
+テンプレートを開くと、**Application InsightsアプリケーションID**の入力を求められます。 このアプリケーションIDは、Azureポータルに移動し、[App Insights]リソースに移動して、[APIアクセス]をクリックすると見つかります。
 
-After you enter the Application Id, click **Load**. 
+アプリケーションIDを入力したら、**Load**をクリックします。
 
 <img src="../images/pbi1.png" alt="Application Id Load" width="800"/>
 
 <!-- ![](../images/pbi1.png) -->
 
 
-Next, it will ask for credentials:
+次に、資格情報を要求します。
 
 <img src="../images/pbi2.png" alt="Credentials" width="800"/>
 
 <!-- ![](../images/pbi2.png) -->
 
 
-Enter your credentials and you'll have PowerBI reports ready to go like the one seen below:
+資格情報を入力すると、Power BIレポートを以下のように準備できます。
 
 <img src="../images/pbi3.JPG" alt="PowerBi sample report" width="800"/>
 
 <!-- ![](../images/pbi3.jpg) -->
 
-## Additional Materials
-For more information on PowerBI and developing reports on PowerBI see [What is Power BI](https://docs.microsoft.com/en-us/power-bi/power-bi-overview).
+## 追加資料
+PowerBIの詳細とPowerBIでのレポートの開発については、[Power BIとは](https://docs.microsoft.com/power-bi/power-bi-overview)を参照してください。
 
 ## Special Thanks 
-Special thanks to Emilio D'Angelo for creating this PBI template. 
+このPBIテンプレートを作成してくれた Emilio D'Angelo に特に感謝します。
