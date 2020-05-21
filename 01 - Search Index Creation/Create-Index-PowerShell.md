@@ -75,7 +75,7 @@
 
 > PowerShellを初めて使用する場合は、[Windows 10でPowerShellスクリプトファイルを実行する方法](https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10)を使用して作業を開始できます。
 
-[PowerShell script](./deploy.ps1)を実行するには、
+[PowerShell script](https://github.com/nohanaga/azure-search-knowledge-mining/blob/master/00%20-%20Resource%20Deployment/deploy.ps1)を実行するには、
 
 1. PowerShellを開き、カレントフォルダーに移動します。
 2. 次のコマンドを実行します。

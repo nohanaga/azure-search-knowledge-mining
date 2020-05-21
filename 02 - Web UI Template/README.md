@@ -1,26 +1,26 @@
-# Cognitive Search UI Template
-This folder contains a basic web front end that can be used to quickly create a view of your search results.  With just a few simple steps, you can configure this template UI to query your newly created search index.
+# Cognitive Search UI テンプレート
+このフォルダーには、検索結果のビューをすばやく作成するために使用できる基本的なWebフロントエンドが含まれています。いくつかの簡単な手順で、このテンプレートUIを構成して、新しく作成した検索インデックスをクエリできます。
 
-The Cognitive Search Template contains two projects:
+Cognitive Searchテンプレートには、2つのプロジェクトが含まれています。
 
-1. **CognitiveSearch.UI** - this is a .NET Core MVC Web app used as a Template UI for querying a search index. This is the focus of this README.
-2. **CognitiveSearch.Skills** - this is an Azure Function project used for creating C# custom skills. For more information on custom skills, please see the the documentation in *03 - Data Science & Custom Skills*.
+1. **CognitiveSearch.UI** - これは、検索インデックスをクエリするためのテンプレートUIとして使用される .NET Core MVC Webアプリです。これが本READMEの焦点です。
+2. **CognitiveSearch.Skills** - これは、C＃カスタムスキルの作成に使用されるAzure Functionプロジェクトです。カスタムスキルの詳細については、**03 - データサイエンスとカスタムスキル**のドキュメントを参照してください。
 
-In just a few steps, you can configure this template UI to query your search index. This template will render a web page similar to the following:
+ほんの数ステップで、このテンプレートUIを構成して、検索インデックスをクエリできます。このテンプレートは、次のようなWebページをレンダリングします。
 
 ![web user interface](../images/WebUI.jpg)
 
-## Prerequisites
+## 前提条件
 
-1. Visual Studio 2017 or newer
+1. Visual Studio 2017以降
 
-## 1. Update appsettings.json
+## 1. appsettings.jsonを更新する
 
-To configure your web app to connect to your Azure services, simply update the *appsettings.json* file.
+Azureサービスに接続するようにWebアプリを構成するには、*appsettings.json*ファイルを更新するだけです。
 
-This file contains a mix of required and optional fields described below.
+このファイルには、以下で説明する必須フィールドとオプションフィールドがあります。
 
-### Required fields
+### 必須フィールド
 
 ```json
   // Required fields
@@ -35,36 +35,36 @@ This file contains a mix of required and optional fields described below.
   "IsPathBase64Encoded": true,
 ```
 
-1. **SearchServiceName** - The name of your Azure Cognitive Search service
-2. **SearchApiKey** - The API Key for your Azure Cognitive Search service
-3. **SearchIndexName** - The name of your Azure Cognitive Search index
-4. **SearchIndexerName** - The name of your Azure Cognitive Search indexer
-5. **StorageAccountName** - The name of your Azure Blob Storage Account
-6. **StorageAccountKey** - The key for your Azure Blob Storage Account
-7. **StorageContainerAddress** - The URL to the storage container where your documents are stored. This should be in the following format: *https://*storageaccountname*.blob.core.windows.net/*containername**
-8. **KeyField** - They key field for your search index. This should be set to the field specified as a key document Id in the index. By default this is *metadata_storage_path*.
-9. **IsPathBase64Encoded** - By default, metadata_storage_path is the key, and it gets base64 encoded so this is set to true by default. If your key is not encoded, set this to false.
+1. **SearchServiceName** - Azure Cognitive Searchサービスの名前
+2. **SearchApiKey** - Azure Cognitive SearchサービスのAPIキー
+3. **SearchIndexName** - Azure Cognitive Searchインデックスの名前
+4. **SearchIndexerName** - Azure Cognitive Searchインデクサーの名前
+5. **StorageAccountName** - Azure Blob Storageアカウントの名前
+6. **StorageAccountKey** - Azure Blob Storageアカウントのキー
+7. **StorageContainerAddress** - ドキュメントが保存されているストレージコンテナーへのURL。これは次の形式である必要があります：*https://*storageaccountname*.blob.core.windows.net/*containername**
+8. **KeyField** - 検索インデックスのキーフィールドです。これは、インデックスでキードキュメントIDとして指定されたフィールドに設定する必要があります。デフォルトでは、これは*metadata_storage_path*です。
+9. **IsPathBase64Encoded** - デフォルトでは、metadata_storage_pathがキーであり、base64でエンコードされるため、デフォルトでtrueに設定されています。キーがエンコードされていない場合は、これをfalseに設定します。
 
-### Optional Fields
+### オプションのフィールド
 
-While some fields are optional, we recommend not removing them from *appsettings.json* to avoid any possible errors.
+一部のフィールドはオプションですが、考えられるエラーを回避するために *appsettings.json* から削除しないことをお勧めします。
 
 ```json
-  // Optional instrumentation key
+  // オプションのインストルメンテーションキー
   "InstrumentationKey": "",
 
-  // Optional container addresses if using more than one indexer:
+  // 複数のインデクサーを使用する場合のオプションのコンテナーアドレス：
   "StorageContainerAddress2": "https://{storage-account-name}.blob.core.windows.net/{container-name}",
   "StorageContainerAddress3": "https://{storage-account-name}.blob.core.windows.net/{container-name}",
 
-  // Optional key to an Azure Maps account if you would like to display the geoLocation field in a map
+  // マップにgeoLocationフィールドを表示する場合は、Azure Mapsアカウントへのオプションのキー
   "AzureMapsSubscriptionKey": "",
 
-  // Set to the name of a facetable field you would like to represent as a graph.
-  // You may also set to a comma separated list of the facet names if you would like more than one facet type on the graph.
+  // グラフとして表現するファセットテーブルフィールドの名前に設定します。
+  // グラフ上に複数のファセットタイプが必要な場合は、ファセット名のコンマ区切りのリストを設定することもできます。
   "GraphFacet": "keyPhrases, locations",
 
-  // Additional Customizations
+  // 追加のカスタマイズ
   "Customizable": "true",
   "OrganizationName": "Microsoft",
   "OrganizationLogo": "~/images/logo.png",
@@ -72,41 +72,43 @@ While some fields are optional, we recommend not removing them from *appsettings
 
 ```
 
-1. **InstrumentationKey** - Optional instumentation key for Application Insights. The instrumentation key connects the web app to Application Inisghts in order to populate the Power BI reports.
-2. **StorageContainerAddress2** & **StorageContainerAddress3** - Optional container addresses if using more than one indexer
-3. **AzureMapsSubscriptionKey** - You have the option to provide an Azure Maps account if you would like to display a geographic point in a map in the document details. The code expects a field called *geolocation* of type Edm.GeographyPoint. If your wish to change this behavior (for instance if you would like to use a different field), you can modify details.js.
+1. **InstrumentationKey** - Application Insightsのオプションのインストルメンテーションキー。インストルメンテーションキーは、WebアプリをApplication Insightsに接続して、Power BIレポートにデータを入力します。
+2. **StorageContainerAddress2** & **StorageContainerAddress3** - 複数のインデクサーを使用する場合のオプションのコンテナーアドレス
+3. **AzureMapsSubscriptionKey** - ドキュメントの詳細の地図に地理的位置を表示する場合は、Azure Mapsアカウントを提供するオプションがあります。コードは、タイプ Edm.GeographyPoint の *geolocation* というフィールドを想定しています。この動作を変更したい場合（たとえば、別のフィールドを使用したい場合）、details.jsを変更できます。
+
 ![geolocation](../images/geolocation.png)
-4. **GraphFacet** - The GraphFacet is used for generating the relationship graph. This can now be edited in the UI.
-5. **Customizable** - Determines if user is allowed to *customize* the web app. Customizations include uploading documents and changing the colors/logo of the web app. **OrganizationName**,  **OrganizationLogo**, and **OrganizationWebSiteUrl** are additional fields that also allow you to do light customization.
 
-## 2. Update SearchModel.cs
+4. **GraphFacet** - GraphFacetは、関係グラフの生成に使用されます。これは、UIで編集できるようになりました。
+5. **Customizable** - ユーザーがWebアプリを「カスタマイズ」できるかどうかを決定します。カスタマイズには、ドキュメントのアップロード、Webアプリの色/ロゴの変更が含まれます。**OrganizationName**、**OrganizationLogo**、および**OrganizationWebSiteUrl**は、簡単なカスタマイズを可能にする追加のフィールドです。
 
-At this point, your web app is configured and is ready to run. By default, all facets, tags, and fields will be used in the UI.
+## 2. SearchModel.csを更新する
 
-If you would like to further customize the UI, you can update the following fields in *Search\SearchModel.cs*. You can select the filters that you are able to facet on, the tags shown with the results, as well as the fields returned by the search.
+この時点で、Webアプリが構成され、実行する準備ができています。デフォルトでは、すべてのファセット、タグ、およびフィールドがUIで使用されます。
+
+UIをさらにカスタマイズする場合は、*Search\SearchModel.cs*の次のフィールドを更新できます。ファセットできるフィルター、結果とともに表示されるタグ、および検索で返されるフィールドを選択できます。
 
 ![searchmodel](../images/SearchModel.png)
 
-**Facets** - Defines which facetable fields will show up as selectable filters in the UI. By default all facetable fields are included.
+**Facets** - UIで選択可能なフィルターとして表示されるファセットテーブルフィールドを定義します。デフォルトでは、すべてのfacetableフィールドが含まれています。
 
-**Tags** - Defines which fields will be added to the results card and details view as buttons. By default all facetable fields are included.
+**Tags** - 結果カードと詳細ビューにボタンとして追加されるフィールドを定義します。デフォルトでは、すべてのfacetableフィールドが含まれています。
 
-**ResultFields** - Defines which fields will be returned in the results view. Only fields that are used for the UI should be included here to reduce latency caused by larger documents. By default all fields are included.
+**ResultFields** - 結果ビューで返されるフィールドを定義します。ここでは、UIに使用されるフィールドのみを含めて、大きなドキュメントによる遅延を減らす必要があります。デフォルトでは、すべてのフィールドが含まれています。
 
-## 3. Add additional customization
+## 3. さらなるカスタマイズを追加する
 
-This template serves as a great baseline for a Cognitive Search solution, however, you may want to make additional updates depending on your use case.
+このテンプレートは、Cognitive Searchソリューションの優れたベースラインとして機能しますが、ユースケースによっては、追加の更新を行うことができます。
 
-We have a special behavior if you have a field called *translated_text*. The UI will automatically show the original text and the translated text in the UI. This can be handy. If you would like to change this behavior (disable it, or change the name of the field), you can do that at details.js (GetTranscriptHTML method).
+*translated_text*というフィールドがある場合、特別な動作があります。UIは、元のテキストと翻訳されたテキストをUIに自動的に表示します。これは便利です。この動作を変更する（無効にする、またはフィールドの名前を変更する）場合は、details.js（GetTranscriptHTMLメソッド）で変更できます。
 
 ![geolocation](../images/translated.png)
 
-### Key Files
+### 主要ファイル
 
-Much of the UI is rendered dynamically by javascript. Some important files to know when making changes to the UI are:
+UIの多くはJavaScriptによって動的にレンダリングされます。UIに変更を加えるときに知っておくべき重要なファイルは次のとおりです。
 
-1. **wwroot/js/results.js** - contains the code used to render search results on the UI
+1. **wwroot/js/results.js** - UIに検索結果をレンダリングするために使用されるコードが含まれています
 
-2. **wwroot/js/details.js** - contains the code for rending the detail view once a result is selected
+2. **wwroot/js/details.js** - 結果が選択されたときに詳細ビューをレンダリングするためのコードが含まれています
 
-3. **Search/DocumentSearchClient.cs** - contains the code for talking with Azure Cognitive Search's APIs. Setting breakpoints in this file is a great way to debug.
+3. **Search/DocumentSearchClient.cs** - Azure Cognitive SearchのAPIと通信するためのコードが含まれています。このファイルにブレークポイントを設定することは、デバッグに最適な方法です。
