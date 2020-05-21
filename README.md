@@ -11,82 +11,82 @@ description: "Welcome to the Knowledge Mining Solution Accelerator!"
 urlFragment: azure-search-knowledge-mining
 ---
 
-![Knowledge Mining Solution Accelerator](images/kmheader.png)
+![ナレッジマイニング ソリューションアクセラレーター](images/kmheader.png)
 
-# Knowledge Mining Solution Accelerator
+# ナレッジマイニング ソリューションアクセラレーター
 
-## About this repository
+## このレポジトリについて
 
-Welcome to the Knowledge Mining Solution Accelerator! This accelerator provides developers with all of the resources they need to quickly build an initial Knowledge Mining prototype with [Azure Cognitive Search](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro). Use this accelerator to jump-start your development efforts with your own data or as a learning tool to better understand how you can use Cognitive Search to meet the unique needs of your business.
+ナレッジマイニング ソリューションアクセラレータへようこそ！ このアクセラレータは、[Azure Cognitive Search](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro)を使用して初期ナレッジマイニングプロトタイプをすばやく構築するために必要なすべてのリソースを開発者に提供します。このアクセラレーターを使用して、独自のデータで開発作業を開始したり、学習ツールとして使用して、Cognitive Searchを使用してビジネスの固有のニーズを満たす方法をよりよく理解できます。
 
-In this repository, we've provided you with all of the artifacts you need to quickly create a Cognitive Search Solution including: templates for deploying the appropriate Azure resources, assets for creating your first search index, templates for using custom skills, a basic web app, and PowerBI reports to monitor search solution performance. We've infused best practices throughout the documentation to help guide you. With Cognitive Search, you can easily index both digital data (such as documents and text files) and analog data (such as images and scanned documents).
+このリポジトリでは、適切なAzureリソースをデプロイするためのテンプレート、最初の検索インデックスを作成するためのアセット、カスタムスキルを使用するためのテンプレート、基本的なWebなど、Cognitive Search Solutionをすばやく作成するために必要なすべての作成物が提供されています アプリ、およびPowerBIレポートで検索ソリューションのパフォーマンスを監視します。ドキュメント全体にベストプラクティスを盛り込み、ガイドを提供します。Cognitive Searchを使用すると、デジタルデータ（ドキュメントやテキストファイルなど）とアナログデータ（画像やスキャンしたドキュメントなど）の両方に簡単にインデックスを付けることができます。
 
-> Note: This guide uses the AI enrichment feature of Cognitive Search. AI enrichment allows you to ingest many kinds of data (documents, text files, images, scanned docs, and more), extract their contents, enrich and transform it, and then index it for exploration purposes. To learn more about this feature, see the [AI in Cognitive Search](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro) doc.
+> Note: このガイドでは、Cognitive SearchのAIエンリッチメント機能を使用します。AIエンリッチメントを使用すると、さまざまな種類のデータ（ドキュメント、テキストファイル、画像、スキャンしたドキュメントなど）を取り込み、それらのコンテンツを抽出し、エンリッチおよび変換してから、検索目的でインデックスを作成できます。この機能の詳細については、[AI in Cognitive Search](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro)ドキュメントを参照してください。
 
-Once you're finished, you'll have a web app ready to search your data.
+完了すると、データを検索するためのWebアプリが準備できます。
 
 ![A web app showing several resources and their lists of searchable tags](images/ui.PNG)
 
-## Prerequisites
+## 前提条件
 
-In order to successfully complete your solution, you'll need to gain access and provision the following resources:
+ソリューションを正常に完了するには、次のリソースにアクセスしてプロビジョニングする必要があります。
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/)
-* [Visual Studio 2017 or later](https://visualstudio.microsoft.com/downloads/)
-* [Postman](https://www.getpostman.com/) for making API calls
-* Documents uploaded to any data source supported by Azure Search Indexers. For a list of these, see [Indexers in Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-indexer-overview). This solution accelerator uses Azure Blob Storage as a container for source data files. You can find sample documents in the **sample_documents/** folder.
+* Azure サブスクリプション - [無料で作成](https://azure.microsoft.com/free/)
+* [Visual Studio 2017 以降](https://visualstudio.microsoft.com/downloads/)
+* [Postman](https://www.getpostman.com/) APIコール作成用
+* Azure Search Indexersでサポートされている任意のデータソースにアップロードされたドキュメント。 これらの一覧については、[Indexers in Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-indexer-overview)を参照してください。このソリューションアクセラレータは、Azure Blob Storageをソースデータファイルのコンテナーとして使用します。**sample_documents/** フォルダにサンプルドキュメントがあります。
 
-The directions provided in this guide assume you have a fundamental working knowledge of the Azure portal, Azure Functions, Azure Cognitive Search, Visual Studio and Postman. For additional training and support, please see:
+このガイドで提供される指示は、Azureポータル、Azure Functions、Azure Cognitive Search、Visual StudioおよびPostmanの基本的な実用知識があることを前提としています。追加のトレーニングとサポートについては、以下を参照してください。
 
 * [Knowledge Mining Bootcamp](https://github.com/Azure/LearnAI-KnowledgeMiningBootcamp)
 * [AI in Cognitive Search documentation](https://docs.microsoft.com/azure/search/cognitive-search-resources-documentation)
 
-## Process overview
+## プロセスの概要
 
-Clone or download this repository and then navigate through each of these folders in order, following the steps outlined in each of the README files. When you complete all of the steps, you'll have a working end-to-end solution that combines data sources with data enrichment skills, a web app powered by Azure Cognitive Search, and intelligent reporting on user search activity.
+このリポジトリを複製またはダウンロードしてから、各READMEファイルで概説されている手順に従って、これらの各フォルダーを順番に移動します。すべての手順を完了すると、データソースとデータエンリッチメントスキルを組み合わせた実用的なエンドツーエンドのソリューション、Azure Cognitive Searchを利用したWebアプリ、ユーザーの検索アクティビティに関するインテリジェントなレポートが完成します。
 
 ![the cognitive indexing pipelines used for processing unstructured data in Azure Search](images/architecture.jpg)
 
-### [00 - Resource Deployment](./00%20-%20Resource%20Deployment)
-The contents of this folder show you how to deploy the required resources to your Azure subscription. You can do this either through the [Azure portal](https://portal.azure.com) or using the provided [PowerShell script](./00%20-%20Resource%20Deployment/deploy.ps1).
+### [00 - リソースのデプロイ](./00%20-%20Resource%20Deployment)
+このフォルダーの内容は、必要なリソースをAzureサブスクリプションにデプロイする方法を示しています。 これは、[Azure portal](https://portal.azure.com)または提供されている[PowerShell script](./00%20-%20Resource%20Deployment/deploy.ps1)を使用して実行できます。
 
-Alternatively, you can automatically deploy the required resources using this button:
+または、このボタンを使用して、必要なリソースを自動的にデプロイすることもできます。
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a> 
 
-### [01 - Search Index Creation](./01%20-%20Search%20Index%20Creation)
-This folder contains a Postman collection that you can use to create a search index. The collection is pre-configured to take advantage of out-of-the-box Cognitive Search functionality.
+### [01 - 検索インデックスの作成](./01%20-%20Search%20Index%20Creation)
+このフォルダーには、検索インデックスの作成に使用できるPostmanコレクションが含まれています。コレクションは、すぐに使用できるCognitive Search機能を利用するように事前構成されています。
 
-We recommend using this collection to create an initial search index and then iterating by editing the postman collection and adding custom skills as needed.
+このコレクションを使用して初期検索インデックスを作成してから、Postmanコレクションを編集し、必要に応じてカスタムスキルを追加して反復することをお勧めします。
 
-### [02 - Web UI Template](./02%20-%20Web%20UI%20Template)
-This folder contains a basic Web UI Template, written in .NET Core, which you can configure to query your search index. Follow the steps outlined in the [Web UI Template README file](./02%20-%20Web%20UI%20Template/README.md) to integrate your new search index into the web app.
+### [02 - Web UI テンプレート](./02%20-%20Web%20UI%20Template)
+このフォルダーには、.NET Coreで記述された基本的なWeb UIテンプレートが含まれており、検索インデックスを照会するように構成できます。[Web UI テンプレート README ファイル](./02%20-%20Web%20UI%20Template/README.md)で説明されている手順に従って、新しい検索インデックスをWebアプリに統合します。
 
-### [03 - Data Science & Custom Skills](./03%20-%20Data%20Science%20and%20Custom%20Skills)
-This folder contains examples and templates to add your own custom skills to your solution. These custom skills help to align the solution to the needs of your particular use case. This step is entirely optional and may be skipped if not needed.
+### [03 - データサイエンスとカスタムスキル](./03%20-%20Data%20Science%20and%20Custom%20Skills)
+このフォルダーには、独自のカスタムスキルをソリューションに追加するための例とテンプレートが含まれています。これらのカスタムスキルは、ソリューションを特定のユースケースのニーズに合わせるのに役立ちます。この手順は完全にオプションであり、不要な場合はスキップできます。
 
-For additional samples and information on custom skill development, see the [Custom skill documentation](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface). .NET Azure Function Custom Skills have moved to the [Power Skills repository](https://github.com/Azure-Samples/azure-search-power-skills).
+カスタムスキル開発のその他のサンプルと情報については、[カスタムスキルのドキュメント](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface)を参照してください。.NET Azure関数のカスタムスキルは、[パワースキルリポジトリ](https://github.com/Azure-Samples/azure-search-power-skills)に移動しました。
 
-### [04 - Reporting](./04%20-%20Reporting)
-This folder contains pre-built PowerBI reports that you can use to monitor your solution and to understand user search behavior. They leverage data captured through [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/app-insights-overview) and can be modified to meet your particular business objectives. This step is entirely optional and may be skipped if not needed.
+### [04 - レポーティング](./04%20-%20Reporting)
+このフォルダーには、ソリューションを監視し、ユーザーの検索動作を理解するために使用できるビルド済みのPowerBIレポートが含まれています。これらは、[Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/app-insights-overview)を通じてキャプチャされたデータを活用し、特定のビジネス目標に合わせて変更できます。この手順は完全にオプションであり、不要な場合はスキップできます。
 
-### [Sample Documents](./sample_documents)
-This folder contains a small data set in a variety of file formats that you can use to build your solution if you don't have another data set available.
+### [サンプルドキュメント](./sample_documents)
+このフォルダーには、さまざまなファイル形式の小さなデータセットが含まれており、別のデータセットがない場合にソリューションを構築するために使用できます。
 
-### [Workshop](./workshops)
-Become an Azure Cognitive Search expert in a day!
-This folder contains a self paced workshop that teaches you everything you need to know. Most developer with Azure familiarity should be able to complete the majority of the modules below in 8 hours.
+### [ワークショップ](./workshops)
+1日でAzure Cognitive Searchのエキスパートになりましょう！
+このフォルダには、あなたが知る必要のあるすべてを教えるセルフペースのワークショップが含まれています。Azureに精通しているほとんどの開発者は、以下のモジュールの大部分を8時間で完了することができます。
 
-+ [Module 0 - Pre-Requisites](./workshops/Module%200.md) (*you must complete prior to moving on!*)
-+ [Module 1 - Using Azure Portal to Build a Search Index and Knowledge Store](./workshops/Module%201.md)
-+ [Module 2 - Visualizing the Results with a Demo FrontEnd](./workshops/Module%202.md)
-+ [Module 3 - Introduction to Custom Skills and Azure Functions](./workshops/Module%203.md)
-+ [Module 4 - Learning the Object Model](./Module%204.md)
-+ [Module 5 - Advanced Azure Cognitive Search: Analyzers and Scoring Profiles](./workshops/Module%205.md)
-+ [Module 6 - Analyzing Your Data with PowerBI](./workshops/Module%206.md)
-+ [Module 7 - Using Azure Cognitive Search to index structured data](./workshops/Module%207.md) (Optional)
++ [Module 0 - 前提条件](./workshops/Module%200.md) (*先に進む前に完了する必要があります！*)
++ [Module 1 - Azure Portalを使用して検索インデックスとナレッジストアを構築する](./workshops/Module%201.md)
++ [Module 2 - デモのフロントエンドで結果を視覚化する](./workshops/Module%202.md)
++ [Module 3 - カスタムスキルとAzure Functionsの概要](./workshops/Module%203.md)
++ [Module 4 - オブジェクトモデルの学習](./Module%204.md)
++ [Module 5 - 高度なAzure Cognitive Search：アナライザーとスコアリングプロファイル](./workshops/Module%205.md)
++ [Module 6 - PowerBIを使用したデータの分析](./workshops/Module%206.md)
++ [Module 7 - Azure Cognitive Searchを使用して構造化データのインデックスを作成する](./workshops/Module%207.md) (オプション)
 
 
 ## License
