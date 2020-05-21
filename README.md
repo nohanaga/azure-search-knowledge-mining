@@ -67,7 +67,7 @@ urlFragment: azure-search-knowledge-mining
 ### [03 - データサイエンスとカスタムスキル](./03%20-%20Data%20Science%20and%20Custom%20Skills)
 このフォルダーには、独自のカスタムスキルをソリューションに追加するための例とテンプレートが含まれています。これらのカスタムスキルは、ソリューションを特定のユースケースのニーズに合わせるのに役立ちます。この手順は完全にオプションであり、不要な場合はスキップできます。
 
-カスタムスキル開発のその他のサンプルと情報については、[カスタムスキルのドキュメント](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface)を参照してください。.NET Azure関数のカスタムスキルは、[パワースキルリポジトリ](https://github.com/Azure-Samples/azure-search-power-skills)に移動しました。
+カスタムスキル開発のその他のサンプルと情報については、[カスタムスキルのドキュメント](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface)を参照してください。.NET Azure関数のカスタムスキルは、[パワースキルリポジトリ](https://github.com/nohanaga/azure-search-power-skills)に移動しました。
 
 ### [04 - レポーティング](./04%20-%20Reporting)
 このフォルダーには、ソリューションを監視し、ユーザーの検索動作を理解するために使用できるビルド済みのPowerBIレポートが含まれています。これらは、[Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/app-insights-overview)を通じてキャプチャされたデータを活用し、特定のビジネス目標に合わせて変更できます。この手順は完全にオプションであり、不要な場合はスキップできます。
