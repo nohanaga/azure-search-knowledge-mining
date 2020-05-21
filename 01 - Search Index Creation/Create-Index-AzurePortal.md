@@ -13,7 +13,7 @@ Azure Portal経由でインデックスを作成する場合は、次の表の�
 |content				| ファイルのトランスクリプトを表示するために使用されます。**searchable かつ retrievable** である必要があります。  |
 |metadata_storage_path	| これは **key field** である必要があります。ストレージパスは、コンテンツのblobインデクサーにクエリを実行してファイルを「プレビュー」できるようにするために使用されます。**retrievable** である必要があります。**base64 encoded** されている場合は、必ずフロントエンドアプリケーションのファイル[appsettings.json](https://github.com/nohanaga/azure-search-knowledge-mining/tree/master/02%20-%20Web%20UI%20Template)で指定してください。		|
 |metadata_storage_name	| ストレージ名は、結果ページにファイルの名前を表示するために使用されます。**retrievable** である必要があります。	|
-|people					| 文書で識別された人物の文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
+|people					| ドキュメントで識別された人物の文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
 |locations				| ドキュメントで識別された場所を含む文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
 |organizations			| ドキュメントで識別された組織の文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
 |keyPhrases				| ドキュメントで識別されたキーフレーズを含む文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |

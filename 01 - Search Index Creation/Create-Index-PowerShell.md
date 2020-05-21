@@ -1,8 +1,8 @@
-# Creating a Search Index with PowerShell
+# PowerShellを使用した検索インデックスの作成
 
-The `deploy.ps1` PowerShell script in the previous step shows how to create a search index
+前のステップの `deploy.ps1` PowerShellスクリプトは、検索インデックスを作成する方法を示しています。
 
-The following code will create a search index for you based on the json files in the `templates` folder:
+次のコードは、 `templates`フォルダー内のjsonファイルに基づいて検索インデックスを作成します。
 
 ```powershell
     while (!($uniqueName = Read-Host "uniqueName")) { Write-Host "You must provide a uniqueName."; }
@@ -71,17 +71,17 @@ The following code will create a search index for you based on the json files in
     CreateSearchIndex;
 ```
 
-## Running the PowerShell Script
+## PowerShellスクリプトの実行
 
-> If you're new to PowerShell, you can follow the instructions on [How to run PowerShell script file on Windows 10](https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10) to help you get started.
+> PowerShellを初めて使用する場合は、[Windows 10でPowerShellスクリプトファイルを実行する方法](https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10)を使用して作業を開始できます。
 
-To run the [PowerShell script](./deploy.ps1):
+[PowerShell script](./deploy.ps1)を実行するには、
 
-1. Open PowerShell and navigate to this folder.
-2. Run the following command:
+1. PowerShellを開き、カレントフォルダーに移動します。
+2. 次のコマンドを実行します。
 
     ```cmd
         ./deploy.ps1
     ```
 
-3. After running the script, you'll be prompted to login and provide additional information.
+3. スクリプトを実行すると、ログインして追加情報を提供するように求められます。
