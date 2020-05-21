@@ -1,65 +1,65 @@
-# Resource Deployment
+# リソースのデプロイ
 
-There are two options for deploying the resources to Azure for this solution accelerator:
+このソリューションアクセラレーターのリソースをAzureにデプロイするには、2通りの方法があります。
 
-1. **Using a PowerShell Script**: `deploy.ps1`
+1. **PowerShellスクリプトを使用する**: `deploy.ps1`
 
-    This script is the fastest way to get your solution up and running and will perform the following actions:
+    このスクリプトは、ソリューションを起動して実行する最速の方法であり、次のアクションを実行します。
 
-    1. Provision the required Azure resources
-    2. Upload sample data to your storage account
-    3. Create a search index
-    4. Print out the values and keys needed for the web app's *appsettings.json*
+    1.必要なAzureリソースをプロビジョニングする
+    2.サンプルデータをストレージアカウントにアップロードする
+    3.検索インデックスを作成する
+    4. Webアプリの *appsettings.json* に必要な値とキーを出力します
 
-    If you choose to run this script, you can skip the Search Index Creation in the next folder.
+    このスクリプトを実行する場合は、次のフォルダーでの検索インデックスの作成をスキップできます。
 
-2. **Using an ARM Template**: `azuredeploy.json`
+2. **ARMテンプレートを使用する**: `azuredeploy.json`
 
-    To deploy this ARM Template, simply press the button below:
+    このARMテンプレートをデプロイするには、下のボタンを押すだけです。
 
-    > Please note that this will only deploy the resources. You'll then need to create a search index in the next step.
+    > これはリソースのみをデプロイすることに注意してください。 次に、次のステップで検索インデックスを作成する必要があります。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json" target="_blank">
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fnohanaga%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json" target="_blank">
         <img src="http://azuredeploy.net/deploybutton.png"/>
     </a>
 
-## Prerequisites
+## 前提条件
 
-1. Access to an Azure Subscription
+1. Azureサブスクリプションへのアクセス
 
-## Running the PowerShell Script
+## PowerShellスクリプトの実行
 
-> If you're new to PowerShell, you can follow the instructions on [How to run PowerShell script file on Windows 10](https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10) to help you get started.
+> PowerShellを初めて使用する場合は、[Windows 10でPowerShellスクリプトファイルを実行する方法](https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10)を使用して作業を開始できます。
 
-To run the [PowerShell script](./deploy.ps1):
+[PowerShell script](./deploy.ps1)を実行するには、
 
-1. Open PowerShell and navigate to this folder.
-2. Run the following command:
+1. PowerShellを開き、このフォルダーに移動します。
+2. 次のコマンドを実行します。
 
     ```cmd
         ./deploy.ps1
     ```
 
-3. After running the script, you'll be prompted to login and provide additional information.
+3. スクリプトを実行すると、ログインして追加情報を提供するように求められます。
 
-## Resources Deployed
+## デプロイされたリソース
 
-The PowerShell script will provision the following resources to your Azure subscription:
+PowerShellスクリプトは、Azureサブスクリプションに次のリソースをプロビジョニングします。
 
-| Resource              | Usage                                                                                     |
+| リソース              | 用途                                                                                     |
 |-----------------------|-------------------------------------------------------------------------------------------|
-| [Azure Search Service](https://azure.microsoft.com/en-us/services/search/)  | The hosting service for the Search Index, Cognitive Skillset, and Search Indexer          |
-| [Azure Cognitive Services](https://docs.microsoft.com/en-us/azure/search/cognitive-search-attach-cognitive-services)	| Used by the Cognitive Skills pipeline to process unstructured data	|
-|[Azure Storage Account](https://azure.microsoft.com/en-us/services/storage/?v=18.24) | Data source where raw files are stored                                                     |
-| [Web App](https://azure.microsoft.com/en-us/services/app-service/web/)               | The hosting service for the Search UI                                                     |
-| [Application Insights](https://azure.microsoft.com/en-us/services/monitor/)  | Telemetry monitoring service for the Search UI (*Optional*)									|
+| [Azure Cognitive Search](https://azure.microsoft.com/services/search/)  | 検索インデックス、Cognitive スキルセット、および検索インデクサーのホスティングサービス          |
+| [Azure Cognitive Services](https://docs.microsoft.com/azure/search/cognitive-search-attach-cognitive-services)	| Cognitive Skillsパイプラインが非構造化データを処理するために使用します	|
+|[Azure Storage Account](https://azure.microsoft.com/services/storage/?v=18.24) | ファイルが保存されているデータソース                                                     |
+| [Web App](https://azure.microsoft.com/services/app-service/web/)               | 検索UIのホスティングサービス                                                     |
+| [Application Insights](https://azure.microsoft.com/services/monitor/)  | 検索UIのテレメトリ監視サービス (*オプション*)									|
 
-By default, this PowerShell script will provision a Basic Search service for your solution. See [Azure Search Pricing](https://azure.microsoft.com/en-us/pricing/details/search/) for information on sizing limits, scaling limits and pricing and choose your desired tier. 
+既定では、このPowerShellスクリプトはソリューションの基本検索サービスをプロビジョニングします。サイズ制限、スケーリング制限、価格については、[Azure Cognitive Searchの価格](https://azure.microsoft.com/pricing/details/search/)を参照し、希望の階層を選択してください。
 
-Depending on your custom skill development needs, additional Azure resources may be required.  See the README in the [03 - Data Science & Custom Skills](../03%20-%20Data%20Science%20and%20Custom%20Skills/README.md) folder for additional information.
+カスタムスキル開発のニーズによっては、追加のAzureリソースが必要になる場合があります。詳細については、[03 - Data Science & Custom Skills](../03%20-%20Data%20Science%20and%20Custom%20Skills/README.md)フォルダーのREADMEを参照してください。
 
-## Notes
+## 注釈
 
-We recommend building an initial prototype solution leveraging a representative subset of data to estimate the size of your final search index.  When you are ready to build your final solution, you will want to size and provision your resources to meet your estimated scale and performance needs.
+最終的な検索インデックスのサイズを推定するために、データの代表的なサブセットを活用して初期プロトタイプソリューションを構築することをお勧めします。最終的なソリューションを構築する準備ができたら、見積もりの規模とパフォーマンスのニーズを満たすようにリソースのサイズを設定してプロビジョニングする必要があります。
 
-Please see [Azure Service Limits](https://docs.microsoft.com/en-us/azure/search/search-limits-quotas-capacity) for additional information and best practices on sizing.
+サイジングに関する追加情報とベストプラクティスについては、[Azureサービスの制限](https://docs.microsoft.com/azure/search/search-limits-quotas-capacity)をご覧ください。
