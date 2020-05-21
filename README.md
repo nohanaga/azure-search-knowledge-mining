@@ -34,7 +34,7 @@ urlFragment: azure-search-knowledge-mining
 * Azure サブスクリプション - [無料で作成](https://azure.microsoft.com/free/)
 * [Visual Studio 2017 以降](https://visualstudio.microsoft.com/downloads/)
 * [Postman](https://www.getpostman.com/) APIコール作成用
-* Azure Search Indexersでサポートされている任意のデータソースにアップロードされたドキュメント。 これらの一覧については、[Indexers in Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-indexer-overview)を参照してください。このソリューションアクセラレーターは、Azure Blob Storageをソースデータファイルのコンテナーとして使用します。**sample_documents/** フォルダにサンプルドキュメントがあります。
+* Azure Search Indexersでサポートされている任意のデータソースにアップロードされたドキュメント。 これらの一覧については、[Azure Cognitive Search のインデクサー](https://docs.microsoft.com/azure/search/search-indexer-overview)を参照してください。このソリューションアクセラレーターは、Azure Blob Storageをソースデータファイルのコンテナーとして使用します。**sample_documents/** フォルダにサンプルドキュメントがあります。
 
 このガイドで提供される指示は、Azureポータル、Azure Functions、Azure Cognitive Search、Visual StudioおよびPostmanの基本的な実用知識があることを前提としています。追加のトレーニングとサポートについては、以下を参照してください。
 
