@@ -1,34 +1,34 @@
-# Knowledge Mining Workshop
+# ナレッジマイニングワークショップ
 
-**Welcome to the Knowledge Mining workshop!** 
+**ナレッジマイニングワークショップにようこそ！** 
 
-During this lab, we will be exploring a data set that is comprised of clinical trials in PDF format.  This demo data set contains over 100 records which contain complex medical terms and disease information in an unstructured format - meaning that there is no easy way to search the data set for information or records that pertain to a specific disease, like cirrhosis.  And worse yet, if (like the authors of this lab) you don't always accurately spell cirrhosis, you may have no way of ever finding the information you're looking for - structured or otherwise.
+このラボでは、PDF 形式の臨床試験で構成されたデータセットを探索します。このデモデータセットには、構造化されていない形式で複雑な医学用語と疾患情報を含む 100 を超えるレコードが含まれています。つまり、肝硬変などの特定の疾患に関連する情報またはレコードをデータセットで簡単に検索する方法はありません。さらに悪いことに、（このラボの作成者のように）常に肝硬変を正確に綴っていない場合、構造化されているかどうかに関係なく、探している情報を見つける方法がありません。
 
-The challenge is, how can you take a vast amount of unstructured content and all of the latent data that it contains and provide an easy and effective way for a human to find the information that is most meaningful and relevant to them in the most efficient means possible?  Metaphorically, we are going to be finding meaning in information that starts out looking like this:
+課題は、膨大な量の非構造化コンテンツとそこに含まれるすべての潜在データをどのように取得し、最も効果的かつ効率的な方法で、最も意味があり関連性のある情報を人間が簡単かつ効果的に見つけることができるかです。たとえて言えば、私たちはこの写真のように見える情報から意味を見つけます。
 
 ![](images/unstructured.png)
 
-This is where the power of Knowledge Mining with Azure Cognitive Search comes to the rescue.  Using the skills and techniques we'll be teaching you today, you will be able to quickly and easily ingest this content, build custom skills to identify and extract specific medical terms related to disease conditions and then either search for information through a web front end
+ここで、Azure Cognitive Search を使用したナレッジマイニングの力が役に立ちます。本日ご紹介するスキルとテクニックを使用して、このコンテンツをすばやく簡単に Ingest し、病状に関連する特定の医学用語を特定して抽出するカスタムスキルを構築し、Webフロントエンドから情報を検索できます。
 
 ![](images/results.png)
 
-or project the data into powerful visuals  you create in PowerBI.  
+または、PowerBI で作成した強力なビジュアルにデータを投影します。
 
 ![](images/mod5/ks-pbi-visual5-filledmap-graph.png)
 
-Along the way, we will also show you how easy and powerful it is to introduce more advanced search topics like phonetic search to your index (so that your users can find the information they are looking for regardless of their spelling skills) and boost relevancy of results.  The end result of today's workshop will be a fully searchable medical repository that will allow users to find and extract really powerful information, even if they are not trained medical professionals.  
+途中で、表音検索などのより高度な検索トピックをインデックスに導入して（ユーザーがスペルスキルに関係なく探している情報を見つけられるようにする）ことがいかに簡単で強力かを示し、関連性を高めます。今日のワークショップの最終結果は、ユーザーがトレーニングを受けた医療専門家でなくても、本当に強力な情報を見つけて抽出できる完全に検索可能な医療リポジトリになります。
 
-More concretely, you'll learn how to build an Azure Cognitive Search Index and Knowledge Store repository through the Azure Portal. From there, we'll explore more advanced concepts in Azure Cognitive Search, build custom skills to extend the solution and create a basic web page front end to visualize your search results. Finally, you will build a PowerBI dashboard on top of your Knowledge Store to demonstrate how you can use your data store for data visualization and advanced analytics. We have also included an Optional Module 7 which is a stand alone module that will walk you through indexing data from an AzureSQL data source. We encourage you to walk through this module on your own time and review how this further extends the data available in your solution.
+より具体的には、Azure ポータルを通じて Azure Cognitive Search Index とナレッジストアリポジトリを構築する方法を学習します。そこから、Azure Cognitive Search のより高度な概念を探索し、カスタムスキルを構築してソリューションを拡張し、基本的な Web ページのフロントエンドを作成して検索結果を視覚化します。最後に、ナレッジストアの上に PowerBI ダッシュボードを構築して、データストアをデータの視覚化と高度な分析に使用する方法を示します。また、AzureSQL データソースからのデータのインデックス作成を行うスタンドアロンモジュールであるオプションモジュール7も含まれています。自分の時間にこのモジュールをウォークスルーし、これがソリューションで利用可能なデータをさらに拡張する方法を確認することをお勧めします。
 
-+ *Note: Please make sure to complete all of pre-requisites listed in Module 0 before moving on, as you will not be able to complete the exercises in this lab without them*.
++ **注:** 先に進む前に、モジュール0にリストされているすべての前提条件を完了してください。前提条件がないと、このラボの演習を完了することはできません。
 
 ## Agenda
 
-+ [Module 0 - Pre-Requisites](./Module%200.md) (*you must complete prior to moving on!*)
-+ [Module 1 - Using Azure Portal to Build a Search Index and Knowledge Store](./Module%201.md)
-+ [Module 2 - Visualizing the Results with a Demo FrontEnd](./Module%202.md)
-+ [Module 3 - Introduction to Custom Skills and Azure Functions](./Module%203.md)
-+ [Module 4 - Learning the Object Model](./Module%204.md)
-+ [Module 5 - Advanced Azure Cognitive Search: Analyzers and Scoring Profiles](./Module%205.md)
-+ [Module 6 - Analyzing Your Data with PowerBI](./Module%206.md)
-+ [Module 7 - Using Azure Cognitive Search to index structured data](./Module%207.md) (Optional)
++ [Module 0 - 前提条件](./Module%200.md) (**先に進む前に完了する必要があります！**)
++ [Module 1 - Azure Portalを使用して検索インデックスとナレッジストアを構築する](./Module%201.md)
++ [Module 2 - デモのフロントエンドで結果を視覚化する](./Module%202.md)
++ [Module 3 - カスタムスキルとAzure Functionsの概要](./Module%203.md)
++ [Module 4 - オブジェクトモデルの学習](./Module%204.md)
++ [Module 5 - 高度なAzure Cognitive Search：アナライザーとスコアリングプロファイル](./Module%205.md)
++ [Module 6 - PowerBIを使用したデータの分析](./Module%206.md)
++ [Module 7 - Azure Cognitive Searchを使用して構造化データのインデックスを作成する](./Module%207.md) (オプション)
