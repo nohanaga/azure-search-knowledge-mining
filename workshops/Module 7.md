@@ -1,12 +1,12 @@
-# Optional: Module 7: Indexing data from Azure SQL
+# オプション：モジュール7：Azure SQLからのデータのインデックス作成
 
-In the past modules, we focused on indexing content from unstructured sources such as PDF's.  Often, there is a lot of data that exists in structured data sources such as Azure SQL or Cosmos DB which could benefit from the ability to perform full-text search.  The advantage here, is that unlike unstructured data such as PDF's, the data has already been structured so we can make use of this through faceting and filtering.  Yet, still there is often text content that can benefit from "enrichment".  
+過去のモジュールでは、PDF などの非構造化ソースからのコンテンツのインデックス作成に重点を置いていました。多くの場合、Azure SQL や Cosmos DB などの構造化データソースには、フルテキスト検索を実行する機能を活用できる多くのデータが存在します。ここでの利点は、PDF のような非構造化データとは異なり、データがすでに構造化されているため、ファセットやフィルタリングを通じてこれを利用できることです。それでも、「エンリッチメント」の恩恵を受けることができるテキストコンテンツがまだあることがよくあります。
 
-In the below module you will take a set of purely anonymized patient data (patient name, address, notes, etc) and index it into Azure Cognitive Search.  Just like in the previous module, we will leverage the Custom Skill to extract diseases from the patient notes and then create a resulting application to search the patient information.
+以下のモジュールでは、完全に匿名化された一連の患者データ（患者名、住所、メモなど）を取得して、Azure Cognitive Search にインデックス付けします。前のモジュールと同様に、カスタムスキルを利用して患者ノートから疾患を抽出し、結果のアプリケーションを作成して患者情報を検索します。
 
-## SQL Database Connection Information
+## SQL データベース接続情報
 
-If you happen to have SQL Server Management Studio, you can connect to the Azure SQL database that holds the data will be indexing, however that is not required for this module.  To connect to the database you will use the following information:
+SQL Server Management Studio がある場合は、データを保持する Azure SQL データベースに接続してインデックスを作成できますが、このモジュールでは必要ありません。 データベースに接続するには、次の情報を使用します。
 
 ```
 Server: azs-playground.database.windows.net
@@ -16,16 +16,16 @@ Password: EdrERBt3j6mZDP
 Table: patient-info
 ```
 
-Here is what the data looks like:
+データは次のようになります。
 
  ![](images/sql-patient-info.png)
 
-## Indexing Content into Azure Cognitive Search
+## Azure Cognitive Search へのコンテンツのインデックス作成
 
-Just as we did in Module 3, we will leverage Postman to create the Data Source, Skillset, Indexer and Index to hold the data.  You could alternatively use the Portal, however, you will not be able to configure the Custom Skill for extracting diseases as the ability to do this in not yet available in the portal.
+モジュール3で行ったように、Postman を利用して、データを保持するデータソース、スキルセット、インデクサー、インデックスを作成します。代わりにポータルを使用することもできますが、ポータルでまだ使用できないため、カスタムスキルを設定して疾患を抽出することはできません。
 
-### Create the Index
-Replace the [searchservice] with your search service and use your admin api key in the header.
+### インデックスを作成する
+[searchservice] を検索サービスに置き換え、ヘッダーで管理者APIキーを使用します。
 
 PUT: https://[searchservice].search.windows.net/indexes/patient-info?api-version=2019-05-06
 
@@ -268,8 +268,8 @@ Body:
 }
 ```
 
-### Create the Data Source
-Replace the [searchservice] with your search service and use your admin api key in the header.
+### データソースを作成する
+[searchservice] を検索サービスに置き換え、ヘッダーで管理者APIキーを使用します。
 
 PUT: https://[searchservice].search.windows.net/datasources/medical-demo?api-version=2019-05-06
 
@@ -296,11 +296,11 @@ Body:
 }
 ```
 
-### Create the Skillset
-Replace the [searchservice] with your search service and use your admin api key in the header.
-Note: The below skillset leverages a pre-existing Azure Function (https://diseaseextraction.azurewebsites.net/api/custom-search?code=HXS0y4rEoQZ9p55A7wqybSeYFmYP6Lruna8y8HoAGu3kNSoLf80XWw==) to extract the diseases.  You can use this as-is or change to the one you created in the previous module.
+### スキルセットを作成する
+[searchservice] を検索サービスに置き換え、ヘッダーで管理者APIキーを使用します。
+**注:** 以下のスキルセットは、既存の Azure Functions(https://diseaseextraction.azurewebsites.net/api/custom-search?code=HXS0y4rEoQZ9p55A7wqybSeYFmYP6Lruna8y8HoAGu3kNSoLf80XWw==)を利用して病気を抽出します。これをそのまま使用することも、前のモジュールで作成したものに変更することもできます。
 
-You will also need to update the [Cognitive Services Key] with a valid Cognitive Services Key (that was created in the same region as your Azure Cognitive Search service).
+[Cognitive Services Key] を有効な Cognitive Services Key（Azure Cognitive Search サービスと同じリージョンで作成されたもの）で更新する必要もあります。
 
 PUT: https://[searchservice].search.windows.net/skillsets/patient-demo?api-version=2019-05-06
 
@@ -446,8 +446,8 @@ Body:
 }
 ```
 
-### Create the Indexer
-Replace the [searchservice] with your search service and use your admin api key in the header.
+### インデクサーを作成する
+[searchservice] を検索サービスに置き換え、ヘッダーで管理者APIキーを使用します。
 
 PUT: https://[searchservice].search.windows.net/indexers/patient-info?api-version=2019-05-06
 
