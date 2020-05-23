@@ -75,25 +75,25 @@
  
 11. 臨床試験の発生率を経時的に示す視覚化を追加してみましょう。
 
-**積み上げ縦棒グラフ**を追加します。*Axis* には *lastUpdatePosted* フィールドを選択し、その**日付階層**を選択します。
+    **積み上げ縦棒グラフ**を追加します。*Axis* には *lastUpdatePosted* フィールドを選択し、その**日付階層**を選択します。
 
-![](images/mod5/ks-pbi-visual3-lastupdate-date.png)
+    ![](images/mod5/ks-pbi-visual3-lastupdate-date.png)
 
-次に、**四半期**、**月**、および**日**を削除します。これは、臨床試験が行われた年のみを考慮するためです。
+    次に、**四半期**、**月**、および**日**を削除します。これは、臨床試験が行われた年のみを考慮するためです。
 
-値軸には、**Count (DocumentId)** を選択します。これにより、1年あたりの個別の試験の数をグラフ化できます。これを行うには、単に**DocumentId** フィールドを **Value** フィールドにドラッグします。
+    値軸には、**Count (DocumentId)** を選択します。これにより、1年あたりの個別の試験の数をグラフ化できます。これを行うには、単に**DocumentId** フィールドを **Value** フィールドにドラッグします。
 
-![](images/mod5/ks-pbi-visual4-doccount-graph.png)
+    ![](images/mod5/ks-pbi-visual4-doccount-graph.png)
 
-diseases テーブルで疾患を選択すると、任意の年のその用語に言及している臨床試験を見ることができるはずです。たとえば、*mucopolyyssacharidosis* を選択すると、この10年間にこの分野での研究が増加していることがわかります。
+    diseases テーブルで疾患を選択すると、任意の年のその用語に言及している臨床試験を見ることができるはずです。たとえば、*mucopolyyssacharidosis* を選択すると、この10年間にこの分野での研究が増加していることがわかります。
 
-![](images/mod5/ks-pbi-visual4-doccount-graph-filtered.png)
+    ![](images/mod5/ks-pbi-visual4-doccount-graph-filtered.png)
  
-13. 塗りつぶされた地図の視覚化を追加して、臨床試験のさまざまな国と研究場所を特定します。*Location* には、*Entity* を選択しますが、*Entities* を *Location Entities* のみにフィルタリングします。
+12. 塗りつぶされた地図の視覚化を追加して、臨床試験のさまざまな国と研究場所を特定します。*Location* には、*Entity* を選択しますが、*Entities* を *Location Entities* のみにフィルタリングします。
 
 ![](images/mod5/ks-pbi-visual5-filledmap-settings.png)
  
-14. 完全を期すために、現在の場所/時間フィルターに基づいて臨床試験のタイトルを表示する表をもう1つ追加します。以下のように、**テーブル**視覚化を選択し、視覚化する値として **clinicalTrialsSmallDocument** テーブルから **metadata_title** および **lastUpdatePosted** フィールドを追加します。
+13. 万全を期すために、現在の場所/時間フィルターに基づいて臨床試験のタイトルを表示する表をもう1つ追加します。以下のように、**テーブル**視覚化を選択し、視覚化する値として **clinicalTrialsSmallDocument** テーブルから **metadata_title** および **lastUpdatePosted** フィールドを追加します。
  
     ![](images/mod5/ks-pbi-visual5-filledmap-settings2.png)
 
