@@ -1,38 +1,45 @@
-# Pre-Requisites for Knowledge Mining Workshop
+# ナレッジマイニングワークショップの前提条件
 
-Please make sure you fulfill the following pre-requisites before starting the workshop.
+ワークショップを開始する前に、次の前提条件を満たしていることを確認してください。
 
-1.	Have your own Azure account 
-1.	Be familiar [Azure Portal](https://portal.azure.com)
-1.	Make sure you can create Azure resources in your subscription (including paid resources).
+1.	自分のAzureアカウントを持っている
+1.	[Azure Portal](https://portal.azure.com) を使用できること
+1.	サブスクリプションでAzureリソースを作成できることを確認します（有料リソースを含む）。
 
-  *Note, if your organizations policy prohibits you from creating resources in the subscription, you can use a [free subscription](https://signup.azure.com) for the purposes of this lab.*
+  **注**: *組織のポリシーにより、サブスクリプションでのリソースの作成が禁止されている場合、このラボでは[無料サブスクリプション](https://signup.azure.com)を使用できます。*
 
-4. Create a resource group for this workshop where you will add each of the resources you will create in the next steps.
-4. **Create** an [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal).
-Select Performance: *Standard* tier, not Premium
-Select Account kind: *StorageV2 (general purpose v2)*
-4. **Install** [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
-4. **Copy** the storage container that holds clinical trials from a read only location to your Storage Account.
-    1. **Open** Azure Storage Explorer and select *Managed Accounts*, *Add and Account...*, *Use a shared access signature (SAS) URI*. The *Display name* will autofill. Select *Next*
-    1. **Add** the following *URI*, then select *Next*, then select *Connect*
+4. このワークショップのリソースグループを作成し、次のステップで作成する各リソースを追加します。
+
+4. [Azure Storage Account](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal) を**作成**します。
+
+   - パフォーマンスの選択：プレミアムではなく *標準*
+   - アカウントの種類を選択：*StorageV2（汎用v2）*
+
+4. [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) を**インストール**します。
+4. 臨床試験を保持するストレージコンテナーを読み取り専用の場所からストレージアカウントに**コピー**します。
+    1. Azure Storage Explorer を開いて、*Managed Accounts*、*Add and Account ...*、*Use a shared access signature（SAS）URI* を選択します。*表示名*は自動入力されます。 [*次へ*]を選択します
+    1. 次の *URI*を**追加**してから、**次へ**を選択し、次に**接続**を選択します。
         ```
         https://kmworkshop.blob.core.windows.net/clinical-trials-small?st=2019-09-13T22%3A58%3A18Z&se=2020-09-14T22%3A58%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=M7MPfuxZvVvBkf0Jgg%2BvKWyB49RFYlGNhQ4%2F1nIJ9DU%3D
         ```
-    3. **Select** *Toggle Explorer* to view the Explorer. Right click on the *clinical-trials-small* Blob Container that you just connected to and select *Copy Blob Container*
+    3. エクスプローラーを表示するために、**エクスプローラーを切り替える** を選択します。 接続したばかりの *clinical-trials-small* Blobコンテナーを右クリックし、*Copy Blob Container* を選択します。
+
         ![](images/copyblobcontainer.png)
-    3. **Find** your Storage Account in the Explorer. Right click on its *Blob Containers* and select *Paste Blob Container*.
+        
+    3. エクスプローラーでストレージアカウントを**検索**します。 **Blobコンテナー**を右クリックし、**Blobコンテナーを貼り付け** を選択します。
+
         ![](images/pasteblobcontainer.png)
-    1. Confirm that the container copied successfully by checking the Activities at the bottom of the Azure Storage Explorer.
-4.	**Create** an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) resource. (A Free Tier should be sufficient for this workshop).
-[Learn more](https://docs.microsoft.com/en-us/azure/search/search-sku-tier)
 
-4.	**Create** a [Cognitive Services resource](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows).
+    1. Azure Storage Explorer の下部にあるアクティビティをチェックして、コンテナーが正常にコピーされたことを確認します。
 
-  *Note - You need to create the Cognitive Services resource in the same region as you Azure Search resource.*
+4.	[Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-create-service-portal) リソースを作成します。（このワークショップには無料枠で十分です）[価格表](https://docs.microsoft.com/azure/search/search-sku-tier)
 
-10.	**Install** [Visual Studio 2019](https://visualstudio.microsoft.com/). Make sure you can create ASP.Net websites with it.
-11. **Install** [Postman](https://www.getpostman.com/)
-11. **Install** [PowerBI desktop](https://powerbi.microsoft.com/en-us/desktop/).
+4.	[Cognitive Services](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows) リソースを作成します。
 
-### Next: [Module 1: Using Azure Portal to Create Your Index - No Code Required](Module&#32;1.md)
+    **注**: *Azure Cognitive Searchリソースと同じリージョンにCognitive Servicesリソースを作成する必要があります。*
+
+10.	[Visual Studio 2019](https://visualstudio.microsoft.com/) を**インストール**します。それでASP.Net Webサイトを作成できることを確認してください。
+11.	[Postman](https://www.getpostman.com/) を**インストール**します。
+11.	[PowerBI desktop](https://powerbi.microsoft.com/desktop/) を**インストール**します。
+
+### 次：[モジュール1：Azure Portalを使用してインデックスを作成する-コードは不要](Module&#32;1.md)
