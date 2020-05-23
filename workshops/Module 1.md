@@ -1,178 +1,177 @@
 
-# Module 1: Using Azure Portal to Create Your Index - No Code Required
+# モジュール1：Azure Portalを使用してインデックスを作成する - コード不要
 
-This module uses the Azure Portal to create your first Azure Cognitive Search index without writing any code.  Following these steps you will: ingest a set of files (clinical-trials); extract both structured and unstructured text from those files; index their content and learn how to query your new index.  Finally, we'll use the Azure Portal to project enriched data into a Knowledge Store (new Preview capability), which we'll explore in greater detail in Module 6.
+このモジュールでは、Azure ポータルを使用して、コードを記述せずに最初の Azure Cognitive Search インデックスを作成します。次の手順に従ってください。一連のファイルを取り込みます（臨床試験）。それらのファイルから構造化テキストと非構造化テキストの両方を抽出します。コンテンツのインデックスを作成し、新しいインデックスをクエリする方法を学びます。最後に、Azure ポータルを使用して、豊富なデータをナレッジストア（新しいプレビュー機能）に投影します。これについては、モジュール6で詳しく説明します。
 
-The instructions that follow assume that you have completed all of the pre-requisites found in the [ReadMe](./README.md) to this lab and have provisioned all of the necessary resources to your Azure subscription.  If you have not already completed these steps, you will need to do so prior to moving forward.
+以下の手順では、このラボの [README](./README.md) にある前提条件をすべて完了し、必要なすべてのリソースを Azure サブスクリプションにプロビジョニングしていることを前提としています。これらの手順をまだ完了していない場合は、先に進む前に完了する必要があります。
 
-## Using the Portal Import Data Flow:
+## ポータルインポートデータフローの使用：
 
 
-1. Navigate to your Search service, and click the **Import Data** button. This will launch the Import Data Wizard which will guide you through the steps necessary to ingest your data, enrich it and create a search indexer.
+1. 検索サービスに移動し、[**データのインポート**]ボタンをクリックします。これにより、データのインポートウィザードが起動し、データの取り込み、強化、検索インデクサーの作成に必要な手順が示されます。
 
    ![](images/importdata.png)
  
-1. As part of the Import Data Wizard, in the **Connect to your data** tab, you can enter the information necessary to connect to your data source.
+1. データインポートウィザードの一部として、[**データへの接続**]タブで、データソースへの接続に必要な情報を入力できます。
 
-+ In the drop down for **Data Source**, choose *Azure Blob Storage*.
++ [**データソース**]のドロップダウンで、[**Azure BLOB ストレージ**]を選択します。
 
-+ **Name** your data source *clinical-trials-small*.
++ データソース名：*clinical-trials-small*
 
-+ Set **Data to Extract** to *Content and Metadata*
++ 抽出されるデータ：コンテンツとメタデータ
 
-+ For the **Connection String** click *Choose an existing connection* and select your storage account. Select the *clinical-trials-small* container.
++ 接続文字列： [**既存の接続を選択します**] をクリックし、あなたのストレージアカウントを選択します。*clinical-trials-small* コンテナーを選択します。
 
-    + If you're not able to find the storage account you want to use by selecting *Choose an existing connection* you can always manually add the connection string. To get your connection string, view your storage account in the Azure Portal, select *Access keys* and copy the *Connection String*. Paste this as the *Connection string*. Then add the *Container name* which will be *clinical-trials-small*.
+    + [**既存の接続を選択します**]を選択しても、使用するストレージアカウントが見つからない場合は、いつでも手動で接続文字列を追加できます。接続文字列を取得するには、Azure ポータルでストレージアカウントを表示し、[**アクセスキー**]を選択して**接続文字列**をコピーします。これを**接続文字列**として貼り付けます。 次に、*clinical-trials-small*になる**コンテナ名**を追加します。
  
-   Your screen should now look similar to this:
+   画面は次のようになります。
 
    ![](images/chooseconnection.png)
 
-+ Now click **Next** to apply cognitive skills to your data.
++ [**次へ**]をクリックして、Cognitive スキルをデータに適用します。
 
-## Skillset
+## スキルセット
 
-In Azure Cognitive Search, we call extraction and enrichment steps cognitive skills, which are combined into a skillset referenced during indexing.  In this exercise, you will be learning how to use the [built-in skills](https://docs.microsoft.com/en-us/azure/search/cognitive-search-predefined-skills) through the Azure Portal.  In a later module, we will show you how to attach these skills programmatically and how to build your own [custom skills](https://docs.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-interface).
+Azure Cognitive Search では、抽出およびエンリッチメントステップを Cognitive スキルと呼び、インデックス付け中に参照されるスキルセットに結合されます。この演習では、Azure ポータルを通じて[組み込みスキル](https://docs.microsoft.com/azure/search/cognitive-search-predefined-skills)を使用する方法を学習します。後のモジュールでは、これらのスキルをプログラムで付加する方法と、独自の[カスタムスキル](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface)を構築する方法を示します。
 
-In the next three steps, you will be working through the three drop-down arrows presented: 
+次の3つのステップでは、表示される3つのドロップダウン矢印を操作します。
 
 ![](images/attachenrich.png)
 
 
-### Attach the Cognitive Services 
+### Cognitive Services をアタッチします
 
-This is the resource you created earlier as part of your initial lab set up and is used to power your pre-built AI models.
+これは、初期のラボ設定の一部として以前に作成したリソースであり、事前に作成されたAIモデルを強化するために使用されます。
 
 ![](images/skillset.png)
 
-### Add enrichments
+### エンリッチメントを追加する
 
-Name your skillset: *clinical-trials-small*
+スキルセットに名前を付けます: *clinical-trials-small*
 
-+ Make sure to select the **OCR enrichment** to extract **merged_content** field.
++ **merged_content** フィールドを抽出するには、必ず **OCRエンリッチメント** を選択してください。
 
-+ Now we can apply an enrichment to the merged_content field to extract the locations. Do this by checking **Extract location names**.
++ merged_contentフィールドにエンリッチメントを適用して**場所エンティティ**を抽出できます。これを行うには、**場所の名前を抽出** にチェックします。
 
-+ Leave all of the other enrichment boxes blank at this time as we will add in additional skills later in the lab.
++ ラボで後で追加のスキルを追加するため、この時点では他のすべてのエンリッチメントボックスを空白のままにします。
 
    ![](images/enrichments.png)
 
 
-### Save enrichments to a knowledge store (Preview) 
-As you recall from the introductory session, the knowledge store is a new capability that we introduced into Public Preview in May.  Using the Knowledge Store enables you to use your data in scenarios that do not lend themselves naturally to search.  Once your data has been loaded into the Knowledge Store, you can do things like kick off RPA, run analytics or visualize in tools like PowerBI.
+### ナレッジ ストアにエンリッチメントを保存する (プレビュー)
+紹介セッションを思い出してください。ナレッジストアは、5月にパブリックプレビューに導入した新しい機能です。ナレッジストアを使用すると、自然に検索に適さないシナリオでデータを使用できます。データがナレッジストアに読み込まれると、RPAのキックオフ、分析の実行、PowerBIなどのツールでの視覚化などを実行できます。
 
-Projections are your mechanism for structuring data in a knowledge store. For example, through projections, you can choose whether output is saved as a single blob or a collection of related tables. An easy way to view knowledge store contents is through the built-in Storage Explorer for Azure storage.
+投影は、ナレッジストアでデータを構造化するためのメカニズムです。たとえば、投影を通じて、出力を単一のblobとして保存するか、関連するテーブルのコレクションとして保存するかを選択できます。ナレッジストアのコンテンツを表示する簡単な方法は、Azureストレージの組み込みのストレージエクスプローラーを使用することです。
 
-The knowledge store supports two types of projections:
+ナレッジストアは、次の2種類の投影をサポートしています。
 
- + Tables: For data that is best represented as rows and columns, table projections allow you to define a schematized shape or projection in Table storage.
+ + テーブル：行と列として最もよく表されるデータの場合、テーブルプロジェクションを使用すると、テーブルストレージでスキーマ化された形状またはプロジェクションを定義できます。
 
- + Objects: When you need a JSON representation of your data and enrichments, object projections are saved as blobs.
+ + オブジェクト：データとエンリッチメントのJSON表現が必要な場合、オブジェクトプロジェクションはblobとして保存されます。
 
-For this case, we are going to use Azure table projections 
+このケースでは、Azure テーブルプロジェクションを使用します。
 
 ![](images/addks.png)
 
-We're going to go ahead and create the Knowledge Store now through the Azure Portal and will come back to the visualizations in a later module.
+Azure ポータルでナレッジストアを作成し、後のモジュールで可視化に戻ります。
 
-1. Under **Azure table projections**, make sure *Documents* and *Entities* have been selected. 
-2. Click choose an existing connection and select your storage account.
-3. Click on **+ Container** to create a new container called *clinical-trials-small-ks*.
-4. **Select** the container created in the above step.
+1. **Azure table projections**で、**ドキュメント**と**エンティティ**が選択されていることを確認します。
+2. [既存の接続を選択します]をクリックして、ストレージアカウントを選択します。
+3. [**+コンテナー**] をクリックして、*clinical-trials-small-ks* という新しいコンテナを作成します。
+4. 上記の手順で作成したコンテナを**選択**します。
+2. [**次: 対象インデックスをカスタマイズします**] をクリックします。
 
-2. Click **Next: Customize the target index**.
 
+## インデックスの定義
+このステップでは、Azure Cognitive Search インデックスを設計します。これは、使用するアナライザーのタイプを選択し、どのフィールドとデータが取得可能、フィルター可能、ソート可能、および検索可能かなどの機能を決定するときに、インデックス作成プロセスの重要かつ強力な部分です。
 
-## Index Definition
-In this step, you are designing your Azure Cognitive Search index.  This is an important and powerful part of the index build process as you select the types of Analyzer(s) you want to use and make determinations on features such as which fields and data will be retrievable, filterable, sortable, and searchable. 
+1. インデックスに *clinical-trials-small* のような名前を付けます
 
-1. Give your index a name like *clinical-trials-small*
+2. **Key** をデフォルトオプションのままにします
 
-2. Leave **Key** as the default option
+3. **Suggester 名** に **sg** を追加し、**検索モード** に *analyzingInfixMatching* をセットします。
 
-3. Under **Suggester name** add sg and set **Search mode** to *analyzingInfixMatching*
-
-4.	In the index definition fields:
-      + Make sure all the fields are **retrievable**. 
-      + Make sure that the locations field is **retrievable / facetable / filterable / searchable**.
-      + Make sure that the lastUpdatePosted field is **retrievable / filterable / sortable**.
-      + Set **English-Microsoft** as the *Analyzer* for all searchable fields since the content is in English.
-      + Select **Suggester** for trials, metadata_author, metadata_title and locations
-      + You can make layoutText not searchable/retrievable since we won’t need it for this workshop.
+4.	インデックス定義フィールド：
+      + すべてのフィールドが **取得可能** であることを確認してください。
+      + locations フィールドが **取得可能/ファセット可能/フィルター可能/検索可能** であることを確認してください。
+      + lastUpdatePosted フィールドが**取得可能/フィルター可能/ソート可能**であることを確認してください。
+      + コンテンツが日本語であるため、すべての検索可能なフィールドの**アナライザー**として **日本語-Lucene** を設定します。
+      + trials, metadata_author, metadata_title、locations の **Suggester** にチェックします。
+      + このワークショップでは必要ないため、layoutText を**検索/取得不可**にすることができます。
 
       ![](images/indexdef.png)
 
-   5. Click on **Next: Create an indexer**.
+   5. [**次へ：インデクサーの作成**]をクリックします。
 
-##  Indexer Definition
+##  インデクサーの定義
 
-1. Name the indexer *clinical-trials-small* .
-2. Set the **Schedule** to Once
-3. Click on the **Advanced options** drop down and note that that the index key is Base-64 encoded by default.
+1. インデクサーに *clinical-trials-small* という名前を付けます。
+2. **スケジュール** を**一度**に設定します。
+3. [**詳細オプション**]ドロップダウンをクリックし、インデックスキーはデフォルトで Base-64 でエンコードされていることに注意してください。
  
    ![](images/indexer.png)
 
-4. Click on **Submit**. Then wait 2 or 3 minutes or so for the indexing to occur – then go check the status of your indexer on the portal.  
+4. [**送信**]をクリックします。次に、インデックス作成が行われるまで2〜3分待ってから、ポータルでインデクサーのステータスを確認します。 
  
    ![](images/chkstatus.png)
 
 
    ![](images/chkstatus2.png)
 
-## Searching the Content
-Now that the content has been indexed, we can use the portal to test some search queries. Open the **Search explorer** and enter a search query such as "MPS" to allow us to find all document that refer to the disease MPS, and press "Search". Try adjusting the query with different phrases and terms to get an idea of the content.
+## コンテンツの検索
+コンテンツのインデックスが作成されたので、ポータルを使用していくつかの検索クエリをテストできます。 **検索エクスプローラー** を開き、「MPS」などの検索クエリを入力して、疾患のMPSに関連するすべてのドキュメントを検索し、「検索」を押します。内容を理解するために、さまざまなフレーズや用語でクエリを調整してみてください。
  
  ![](images/srchexplore.png)
  
-Let's try a few additional queries:
+追加のクエリをいくつか試してみましょう。
 
-Search for references to "Gaucher's" disease and do hit highlighting of the content where there is a reference to it:
+「ゴーシェ病」(Gaucher's)への参照を検索し、それへの参照があるコンテンツのヒットハイライトを実行します。
 ```
 gaucher&highlight=content
 ```
-Notice as you scroll through the results that the English-Microsoft Analyzer was able to pick up variations to this phrase such as "Gaucher" and "Gaucher's" and highlights them using default <em> </em> tags.
+結果をスクロールすると、英語-Microsoftアナライザーが「Gaucher」や「Gaucher's」などのこのフレーズのバリエーションを取得でき、デフォルトの <em> </em> タグを使用してそれらを強調表示しています。
 
-Add a parameter &$count=true to determine that there are 8 documents that refer to "Gaucher's" disease:
+パラメータ &$count=true を追加して、「ゴーシェ病」に言及する8つのドキュメントがあることを確認します。
 ```
 gaucher&highlight=content&$count=true
 ```
 
-### Searching the Content using Postman
+### Postmanを使用したコンテンツの検索
 
-The search explorer is useful for performing queries like this, however most developers want to use external tools to start working against the service.  For that reason, open Postman to perform the rest of the below search queries.  To set up the queries we will set the Headers as:
-* api-key: [Enter Admin API Key from Azure Search portal]
+検索エクスプローラーはこのようなクエリを実行するのに役立ちますが、ほとんどの開発者は外部ツールを使用してサービスに対して作業を開始したいと考えています。そのため、Postman を開いて、以下の残りの検索クエリを実行します。クエリを設定するには、ヘッダーを次のように設定します。
+* api-key: [Azure Search ポータルからコピーした管理者キーを入力してください]
 * Content-Type: application/json
 
-You can retrieve the API key by pulling up your search service in the Azure Portal, selecting Keys, then copying one of the available admin keys.
+Azure Portal で検索サービスをプルアップし、[キー]を選択して、使用可能な管理者キーの1つをコピーすることで、APIキーを取得できます。
 
-When we configured the Indexing of the content, we asked for locations to be extracted from the content.  Let's take a look at this by searching for morquio disease and limiting the results to only return the metadata_title, locations fields. Remember to update {name of your service} with the name of your search service.
+コンテンツのインデックス作成を構成するときに、コンテンツから抽出する場所を要求しました。モルキオ病を検索し、結果を metadata_title、locations フィールドのみを返すように制限して、これを見てみましょう。{サービスの名前}を検索サービスの名前で更新することを忘れないでください。
 ```
 GET https://{name of your service}.search.windows.net/indexes/clinical-trials-small/docs?api-version=2019-05-06&search=morquio&$select=metadata_title,locations
 ```
 
-Here's what the request will look like in Postman:
+Postman でのリクエストは次のようになります。
 
  ![](images/querywithselect.PNG)
 
-Notice how the *locations* field is a Collection (or array of strings) that includes all the Location names extracted from the content.
+**locations**フィールドが、コンテンツから抽出されたすべての場所名を含むコレクション（または文字列の配列）であることに注意してください。
 
-Let's try to group all of the *locations* by using Faceting.
+ファセットを使用して、すべての**場所**をグループ化してみましょう。
 ```
 GET https://{name of your service}.search.windows.net/indexes/clinical-trials-small/docs?api-version=2019-05-06&search=morquio&$select=metadata_title,locations&facet=locations
 ```
-We can see how the search results has added a list of the top locations and how often they are found in documents that talk about Morquio.
+検索結果によって上位の場所のリストがどのように追加されたか、およびそれらが Morquio について語っているドキュメントでどのくらいの頻度で見つかったかを確認できます。
 
-Next, let's filter the results to documents that refer to Morquio and have a Location of "Emory University"
+次に、Morquio を参照し、場所が「Emory University」であるドキュメントに結果をフィルターしてみましょう。
 ```
 GET https://{name of your service}.search.windows.net/indexes/clinical-trials-small/docs?api-version=2019-05-06&search=morquio&$select=metadata_title,locations&$filter=locations/any(location: location eq 'Emory University')
 ```
 
-As a final query, we will use the autocomplete capability to suggest terms that match what a user types.  You have likely seen this in search boxes where users start typing and the system quickly suggests potential matches.  Notice how this request is a POST as opposed to a GET.
+最後のクエリとして、オートコンプリート機能を使用して、ユーザーが入力した内容と一致する用語を提案します。ユーザーが入力を開始する検索ボックスでこれが見られた可能性が高く、システムは一致する可能性のある候補をすばやく提案します。このリクエストがGETではなくPOSTであることに注目してください。
 
 ```
 POST https://{name of your service}.search.windows.net/indexes/clinical-trials-small/docs/autocomplete?api-version=2019-05-06
 ```
-Set the body of the request as "raw" and include:
+リクエストの Body を "raw" として設定し、次を含めます。
 ```json
 {
    "fuzzy": true,
@@ -181,7 +180,7 @@ Set the body of the request as "raw" and include:
    "autocompleteMode": "twoTerms"
 }
 ```
-Notice how this request uses a suggesterName called "sg".  You will recall that when you configured the index, you selected some columns to be used to power these autocomplete requests.
+このリクエストが「sg」と呼ばれる SuggesterName をどのように使用するかに注意してください。インデックスを構成したときに、これらのオートコンプリートリクエストの強化に使用する列をいくつか選択したことを思い出してください。
 
 
-### Next: [Module 2: Visualizing the Results with a Demo FrontEnd](Module&#32;2.md)
+### 次：[モジュール2：デモのフロントエンドで結果を視覚化する](Module&#32;2.md)
