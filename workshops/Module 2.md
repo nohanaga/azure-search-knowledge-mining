@@ -1,22 +1,22 @@
-# Module 2: Visualizing the Results with a Demo FrontEnd
-Now that you've built your Search index, we'll take a moment to build and deploy a simple web-page that will allow you to visualize your initial search results.  We'll come back to this view throughout the lab and take special note of how our search results change as we add additional features and capabilities.
+# モジュール2：デモのフロントエンドで結果を視覚化する
+検索インデックスを作成したので、少し時間をかけて、最初の検索結果を視覚化できるようにする簡単なWebページを作成して展開します。ラボ全体でこのビューに戻り、機能を追加したときに検索結果がどのように変化するかについて、特に注意します。
 
-To get started with this exercise, we will be using and getting familiar with the [Knowledge Mining solution accelerator](https://github.com/Azure-Samples/azure-search-knowledge-mining) to create our front-end experience.  This accelerator was published to provide developers with all of the steps and tools required to build a working minimally viable knowledge mining solution.  Take a few moments to note that it contains modules to: deploy the required Azure resources; build custom skills; and present the results in a simple, but elegant front-end.  At the end of this lab, your results will look similar to this:
+この演習を開始するために、[ナレッジマイニングソリューションアクセラレーター](https://github.com/nohanaga/azure-search-knowledge-mining) を使用し、これに慣れて、フロントエンドエクスペリエンスを作成します。このアクセラレータは、最小限の実用的なナレッジマイニングソリューションを構築するために必要なすべての手順とツールを開発者に提供するために公開されました。少し時間をとって、以下のモジュールが含まれていることに注意してください。必要なAzureリソースをデプロイする。カスタムスキルを構築します。シンプルでありながらエレガントなフロントエンドで結果を提示します。このラボが終了すると、結果は次のようになります。
 
 ![](images/intresults.png)
 
-## 1. Clone the repository
+## 1. リポジトリをクローンする
 ```
-git clone https://github.com/Azure-Samples/azure-search-knowledge-mining.git
+git clone https://github.com/nohanaga/azure-search-knowledge-mining.git
 ```
 
-## 2. Start the project
+## 2. プロジェクトを開始する
 
-Open **CognitiveSearch.UI.csproj** (02-Web UI Template\CognitiveSearch.UI) in Visual Studio 
+**CognitiveSearch.UI.csproj** (02-Web UI Template\CognitiveSearch.UI) を Visual Studio で開きます。
 
-## 3. Update appsettings.json
+## 3. appsettings.json を更新する
 
-Update the following fields in the *appsettings.json* file to connect the web app to your storage account, search index, and app insights account:
+*appsettings.json* ファイルの次のフィールドを更新して、Webアプリをストレージアカウント、検索インデックス、Application Insights アカウントに接続します。
 
 ```json
   "SearchServiceName": "Your Search Service Name",
@@ -32,36 +32,35 @@ Update the following fields in the *appsettings.json* file to connect the web ap
 ```
  
 ### Notes
-1. **SearchServiceName** should be set to the name of the search service. (i.e. "myservice")
-1. **SearchApiKey** should be to the name of the search service. (i.e. "B8365AC95521089B7E3FA4CC98435")
-1. **SearchIndexName** should be set to the name of the index (i.e. "clinical-trials-small")
-1. **StorageAccountName** should be set to the name of the storage account (i.e. "mystorageaccount")
-1. **StorageContainerAddress** should be in the following format: *"https://*storageaccountname*.blob.core.windows.net/*containername*"*
-1. **InstrumentationKey** is an optional field. The instrumentation key connects the web app to Application Insights in order to populate the Power BI reports.
-1. **KeyField** should be set to the field specified as a key document Id in the index. (i.e. "metadata_storage_path")
-1. Sometimes metadata_storage_path is the key, and it gets base64 encoded. In that case set **IsPathBase64Encoded** to true.
-1. The **GraphFacet** is used for generating the relationship graph, set it to the name of the facet that you would like to use (i.e. "diseases"). Or leave blank if you won't use the node graph.
-
+1. **SearchServiceName** 検索サービスの名前に設定する必要があります。(例："myservice")
+1. **SearchApiKey** 検索サービスの名前にする必要があります。(例："B8365AC95521089B7E3FA4CC98435")
+1. **SearchIndexName** インデックスの名前に設定する必要があります。 (例："clinical-trials-small")
+1. **StorageAccountName** ストレージアカウントの名前に設定する必要があります。(例："mystorageaccount")
+1. **StorageContainerAddress** 次の形式にする必要があります: *"https://*storageaccountname*.blob.core.windows.net/*containername*"*
+1. **InstrumentationKey** はオプションのフィールドです。インストルメンテーションキーは、Power BIレポートにデータを入力するために、Webアプリを Application Insights に接続します。
+1. **KeyField** インデックスでキードキュメントIDとして指定されたフィールドに設定する必要があります。(例："metadata_storage_path")
+1. 場合によっては、metadata_storage_pathがキーとなり、base64でエンコードされます。その場合、**IsPathBase64Encoded** をtrueに設定します。
+1. **GraphFacet** はリレーションシップグラフの生成に使用され、使用するファセットの名前(例："diseases")に設定します。ノードグラフを使用しない場合は、空白のままにします。
 
 ###
-*Important:* 
-While this tutorial is optimizing for efficiency of allowing you to see results, and investigate the code, please note that entering your credentials into code is not a good practice to follow. We recommend you use a service like [Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-overview) to do this.
+**重要:**
+このチュートリアルは、結果を表示してコードを調査できるように効率を最適化していますが、コードに資格情報を入力することは、実行するのに適した方法ではないことに注意してください。これを行うには、[Azure Key Vault](https://docs.microsoft.com/azure/key-vault/key-vault-overview) などのサービスを使用することをお勧めします。
 
-## 3. Set the **Startup Project**
+## 3. **スタートアップ アイテム**として指定
  
  ![](images/setstart.png)
  
-## 4. Run the project and see the results
+## 4. プロジェクトを実行して結果を確認する
  
 ![](images/intresults.png)
 
-## 5. Inspect the code
+## 5. コードを調査する
 
-Much of the UI is rendered dynamically by javascript. Some important files to know when making changes to the UI are:
+UIの多くは JavaScript によって動的にレンダリングされます。UIに変更を加えるときに知っておくべき重要なファイルは次のとおりです。
 
-1. **wwroot/js/results.js** - contains the code used to render search results on the UI
+1. **wwroot/js/results.js** - UIに検索結果をレンダリングするために使用されるコードが含まれています
 
-2. **wwroot/js/details.js** - contains the code for rending the detail view once a result is selected
+2. **wwroot/js/details.js** - 結果が選択されたときに詳細ビューをレンダリングするためのコードが含まれています
 
-### Next: [Module 3: Introduction to Azure Functions and Custom Skills](Module&#32;3.md)
+### 次：[モジュール3：Azure Functions とカスタムスキルの概要](Module&#32;3.md)
 
