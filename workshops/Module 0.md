@@ -12,8 +12,8 @@
 
 4. [Azure Storage Account](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal) を**作成**します。
 
-   - パフォーマンスの選択：プレミアムではなく *標準*
-   - アカウントの種類を選択：*StorageV2（汎用v2）*
+   - パフォーマンスの選択：プレミアムではなく **標準**
+   - アカウントの種類を選択：**StorageV2（汎用v2）**
 
 4. [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) を**インストール**します。
 4. 臨床試験を保持するストレージコンテナーを読み取り専用の場所からストレージアカウントに**コピー**します。
@@ -32,9 +32,9 @@
 
     1. Azure Storage Explorer の下部にあるアクティビティをチェックして、コンテナーが正常にコピーされたことを確認します。
 
-4.	[Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-create-service-portal) リソースを作成します。（このワークショップには無料枠で十分です）[価格表](https://docs.microsoft.com/azure/search/search-sku-tier)
+4.	[Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-create-service-portal) リソースを**作成**します。（このワークショップには無料枠で十分です）[価格表](https://docs.microsoft.com/azure/search/search-sku-tier)
 
-4.	[Cognitive Services](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows) リソースを作成します。
+4.	[Cognitive Services](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows) リソースを**作成**します。
 
     **注**: *Azure Cognitive Searchリソースと同じリージョンにCognitive Servicesリソースを作成する必要があります。*
 
