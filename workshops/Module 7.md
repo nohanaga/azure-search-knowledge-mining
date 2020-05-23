@@ -298,7 +298,13 @@ Body:
 
 ### スキルセットを作成する
 [searchservice] を検索サービスに置き換え、ヘッダーで管理者APIキーを使用します。
-**注:** 以下のスキルセットは、既存の Azure Functions(https://diseaseextraction.azurewebsites.net/api/custom-search?code=HXS0y4rEoQZ9p55A7wqybSeYFmYP6Lruna8y8HoAGu3kNSoLf80XWw==)を利用して病気を抽出します。これをそのまま使用することも、前のモジュールで作成したものに変更することもできます。
+
+
+**注:** 以下のスキルセットは、既存の Azure Functions
+```
+https://diseaseextraction.azurewebsites.net/api/custom-search?code=HXS0y4rEoQZ9p55A7wqybSeYFmYP6Lruna8y8HoAGu3kNSoLf80XWw==
+```
+を利用して病気を抽出します。これをそのまま使用することも、前のモジュールで作成したものに変更することもできます。
 
 [Cognitive Services Key] を有効な Cognitive Services Key（Azure Cognitive Search サービスと同じリージョンで作成されたもの）で更新する必要もあります。
 
