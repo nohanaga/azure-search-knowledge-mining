@@ -1,117 +1,117 @@
-# Module 6: Analyzing extracted data with PowerBI
-Objective: Now that we projected information to the Knowledge Store, this structured data could be useful in scenarios that go beyond Search. In this module we’ll connect the table projections we created to PowerBI and create a few sample graphs with the extracted data
+# モジュール6：PowerBIを使用した抽出データの分析
+目的：ナレッジストアに情報を投影したので、この構造化データは、検索を超えるシナリオで役立つ可能性があります。このモジュールでは、作成したテーブルプロジェクションを PowerBI に接続し、抽出したデータを使用していくつかのサンプルグラフを作成します
 
-Let's look at the tables we created when we built the Knowledge Store in module 1:
+モジュール1でナレッジストアを構築したときに作成したテーブルを見てみましょう。
 
-We see two tables, one for the documents and another one for each of the entities identified in those documents 
+2つのテーブルがあり、1つはドキュメント用で、もう1つはそれらのドキュメントで識別されるエンティティごとに1つあります。
 
 ![](images/kstable.png)
 
 
 ![](images/kstable2.png)
 
-Now that we projected information to the Knowledge Store, this structured data could be useful in scenarios that go beyond Search.  This data could be useful for analytics, to train an ML model, or simply to maintain a cache of any extractions we produced. In this module we’ll connect the table projections we created to PowerBI and create a few sample graphs with the extracted data.
+このデータは、分析、MLモデルのトレーニング、または単に作成した抽出のキャッシュの維持に役立ちます。
 
-# Analyzing extracted data with PowerBI
+# PowerBI を使用した抽出データの分析
 
-1.	Run **PowerBI Desktop** and click **Get Data**.
+1.	**PowerBI デスクトップ**を実行し、[**データを取得**]をクリックします。
  
     ![](images/mod5/ks-pbi-getdata.png)
  
-2.	Select **Azure** > **Azure Table Storage**, and enter **your account** name.  (This is the name you gave your Azure Storage Account in module 1)
+2.	**Azure** > **Azure Table Storage** を選択し、**アカウント名**を入力します。（これは、モジュール1で Azure ストレージアカウントに付けた名前です）
  
     ![](images/mod5/ks-pbi-getdata2.png)
  
     ![](images/mod5/ks-pbi-getdata3.png)
  
-3.	When prompted, enter the key to your storage account.  You will find this in the Azure Portal as shown below.
+3.	プロンプトが表示されたら、ストレージアカウントのキーを入力します。これは、以下に示すように、Azure ポータルにあります。
 
 ![](images/storeacct.png)
 
-4.	Select the 3 tables we just produced, and click **Load**.
+4.	先ほど作成した3つのテーブルを選択し、[**ロード**]をクリックします。
  
     ![](images/mod5/ks-pbi-getdata4.png)
  
-5.	Open **Power Query** by clicking the **Edit Queries** command.
+5.	[**クエリを編集**]コマンドをクリックして、**Power Query** を開きます。
  
     ![](images/mod5/ks-pbi-editquery1.png)
  
-    For each of the tables:
-    + Remove the **PartitionKey**, **RowKey**, and **Timestamp** columns created by Azure Table storage. Just right click on the Column name, and click **Remove**.  Knowledge store provides relationships used in this analysis.       
+    各テーブルについて：
+    + Azure テーブルストレージによって作成された **PartitionKey**、**RowKey**、および **Timestamp** 列を削除します。列名を右クリックして、[**削除**]をクリックします。ナレッジストアは、この分析で使用される関係を提供します。
 
-    + Expand the **Content** field by clicking the little expand icon on the right of the Content Column.  Select all columns, and uncheck “Use original column name as prefix” as shown below.
+    + [コンテンツ]列の右側にある小さな展開アイコンをクリックして、[**コンテンツ**]フィールドを展開します。以下のように、すべての列を選択し、「元の列名を接頭辞として使用する」のチェックを外します。
  
         ![](images/mod5/ks-pbi-editquery2.png)
         ![](images/mod5/ks-pbi-editquery3.png)
 
-    Remember to do this operation for three of the tables.  
+    3つのテーブルに対してこの操作を行うことを忘れないでください。
  
-7.	Change the type of **lastUpdatePosted** in the **Document table** to be of type **Date**.
+7.	**ドキュメントテーブル**の **lastUpdatePosted** のタイプを**日付**のタイプに変更します。
  
     ![](images/mod5/ks-pbi-editquery4.png)
 
-8.	Then click **Close and Apply**
+8.	次に[**閉じて適用**]をクリックします。
  
     ![](images/mod5/ks-pbi-closeandapply.png)
 
  
-9.	Now, we’ll change the relationships so they are bidirectional, this will help us filter the documents whenever we select a disease or a location.
+9. 次に、関係を双方向になるように変更します。これにより、疾患または場所を選択するたびにドキュメントをフィルタリングできます。
    
-+ Click on the Model tab 
++ [モデル]タブをクリックします
 
     ![](images/mod5/ks-pbi-model.png)
 
-+ Change the relationships so they are bidirectional. Double click the relationships arrow, then you will see the Edit relationships dialog, and set *Cross Filter Direction* to **Both**. Perform this action for both cases (*Document* <--> *Disease* and *Document* <--> *Entities*)
++ 双方向になるように関係を変更します。関係の矢印をダブルクリックすると、[関係の編集]ダイアログが表示され、[クロスフィルターの方向]を[**両方**]に設定します。両方のケースでこのアクションを実行します(*Document* <--> *Disease* および *Document* <--> *Entities*)
 
     ![](images/mod5/ks-pbi-model2.png)
 
-10.	Back on the **Report** tab we will create a few visualizations. Let’s start by creating a table that shows all the entities. Click the table icon, and then drag *disease* into the **Values** field. 
+10.	[**レポート**]タブに戻って、いくつかの視覚化を作成します。すべてのエンティティを示すテーブルを作成することから始めましょう。テーブルアイコンをクリックし、*disease* を[**値**]フィールドにドラッグします。
 
     ![](images/mod5/ks-pbi-visual1.png)
 
-    The table  should look like this: 
+    テーブルは次のようになります。
 
     ![](images/mod5/ks-pbi-visual2-disease-list.png)
  
-11. Let’s add a visualization that shows the incidences of clinical trials over time. 
+11. 臨床試験の発生率を経時的に示す視覚化を追加してみましょう。
 
-Add a **Stacked column chart**. For the *Axis* pick the *lastUpdatePosted* field, and select it’s **Date Hierarchy**. 
+**積み上げ縦棒グラフ**を追加します。*Axis* には *lastUpdatePosted* フィールドを選択し、その**日付階層**を選択します。
 
 ![](images/mod5/ks-pbi-visual3-lastupdate-date.png)
 
-Then remove **quarter**, **month** and **day** since we only care about the year the clinical trial happened. 
+次に、**四半期**、**月**、および**日**を削除します。これは、臨床試験が行われた年のみを考慮するためです。
 
-For the value axis, select **Count (DocumentId)** – this will allow us to graph the number of distinct trials per year. You can do this by simply dragging **DocumentId** field into the **Value** field. 
+値軸には、**Count (DocumentId)** を選択します。これにより、1年あたりの個別の試験の数をグラフ化できます。これを行うには、単に**DocumentId** フィールドを **Value** フィールドにドラッグします。
 
 ![](images/mod5/ks-pbi-visual4-doccount-graph.png)
 
-When you select a disease in the diseases table, you should now be able to see the clinical trials that mention that term for any given year. For instance, selecting *mucopolyyssacharidosis*, you should be able to see that there has been an increase in research in this area over the last decade:
+diseases テーブルで疾患を選択すると、任意の年のその用語に言及している臨床試験を見ることができるはずです。たとえば、*mucopolyyssacharidosis* を選択すると、この10年間にこの分野での研究が増加していることがわかります。
 
 ![](images/mod5/ks-pbi-visual4-doccount-graph-filtered.png)
  
-13. Add a Filled Map Visualization to identify the different countries and research locations for the clinical trials. For the *Location*, select *Entity*, but filter the *Entities* to only *Location Entities*.
+13. 塗りつぶされた地図の視覚化を追加して、臨床試験のさまざまな国と研究場所を特定します。*Location* には、*Entity* を選択しますが、*Entities* を *Location Entities* のみにフィルタリングします。
 
 ![](images/mod5/ks-pbi-visual5-filledmap-settings.png)
  
-14. Just for completeness, we’ll add one more table to show us the title of the clinical trials based on our current location/time filter. Select a **Table** visualization, and add **metadata_title** and **lastUpdatePosted** fields from the **clinicalTrialsSmallDocument** table as the Values to visualize, as shown below. 
+14. 完全を期すために、現在の場所/時間フィルターに基づいて臨床試験のタイトルを表示する表をもう1つ追加します。以下のように、**テーブル**視覚化を選択し、視覚化する値として **clinicalTrialsSmallDocument** テーブルから **metadata_title** および **lastUpdatePosted** フィールドを追加します。
  
     ![](images/mod5/ks-pbi-visual5-filledmap-settings2.png)
 
-    By now, your Report should look like this:
+    これで、レポートは次のようになります。
 
     ![](images/mod5/ks-pbi-visual5-filledmap-graph.png)
 
-Congratulations! Now you have an interactive report. Here are a few fun exercises you could do:
+Congratulations! これでインタラクティブなレポートができました。ここにあなたができるいくつかの楽しい練習があります：
 
-1.	Click over the different years to see how research has evolved over the years in this data set. For instance, you will be able to see that research for *MPS* has actually become more global over the years for instance.
+1.	さまざまな年をクリックして、このデータセットで研究が長年にわたってどのように進化したかを確認してください。たとえば、*MPS* の研究は、たとえば、年月を経て実際によりグローバルになったことがわかります。
 
-2.	Select a particular disease like *“Hypohidrosis”* and quickly see where the researchers that did that clinical-trial are located. 
+2.	*“Hypohidrosis”* (多汗症)などの特定の疾患を選択して、その臨床試験を行った研究者がどこにいるかをすばやく確認します。
 
-3.	Try building your own visualization – notice there are many interesting visualizations in the Visualizations Marketplace.  Here is one we created with the Force-Directed-Graph Visualization to find documents that connect different diseases.
+3.	独自のビジュアライゼーションを作成してみてください。ビジュアライゼーションマーケットプレイスには多くの興味深いビジュアライゼーションがあります。これは、さまざまな疾患を結びつけるドキュメントを見つけるために、Force-Directed-Graph Visualization で作成したものです。
  
     ![](images/mod5/ks-pbi-visual6-directed-graph.png)
 
-### Next: [Optional: Module 7: Indexing data from Azure SQL](Module&#32;7.md)
+### 次：[オプション：モジュール7：Azure SQLからのデータのインデックス作成](Module&#32;7.md)
 
 
 
