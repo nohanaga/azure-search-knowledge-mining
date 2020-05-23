@@ -1,69 +1,69 @@
-# Module 3: Introduction to Azure Functions and Custom Skills
-**Objective:** Introduce the tools and provide concepts key to building [custom skills](https://docs.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-interface). Building a custom skill gives you a way to insert transformations unique to your content. A custom skill executes independently, applying whatever enrichment step you require and allowing you to develop extremely powerful and domain specific knowledge mining solutions.  
+# モジュール3：Azure Functions とカスタムスキルの概要
+**目的:** 本モジュールではツールの紹介と、[カスタムスキル](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface)を構築するための重要な概念を提供します。カスタムスキルを構築すると、コンテンツに固有の変換を挿入する方法が得られます。カスタムスキルは独立して実行され、必要なエンリッチメントステップを適用して、非常に強力でドメイン固有のナレッジマイニングソリューションを開発できます。
 
-In this module we will develop a custom skill to extend the data that was indexed in the previous module.  Your new skill will identify and extract disease names from the data set and store them as entities in a separate field attached to the document.  By doing this, it will allow us to leverage capabilities such as:
+このモジュールでは、前のモジュールでインデックス付けされたデータを拡張するカスタムスキルを開発します。新しいスキルは、データセットから疾患名を識別して抽出し、ドキュメントに添付された別のフィールドにエンティティとして保存します。これにより、次のような機能を活用できます。
 
-1) Leveraging [facets](https://docs.microsoft.com/en-us/azure/search/search-filters-facets) to show the diseases and their counts that are mentioned in the corpus of search results
-2) [Filtering](https://docs.microsoft.com/en-us/azure/search/search-filters) documents that refer to a specific disease
+1) [ファセット](https://docs.microsoft.com/azure/search/search-filters-facets)を活用して、検索結果のコーパスで言及されている疾患とその数を表示する
+2) 特定の疾患に関するドキュメントを[フィルタリング](https://docs.microsoft.com/azure/search/search-filters)する
 
-To do this, we will leverage a "[Custom Skill](https://docs.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-web-api)" built using Azure Functions that will be called by Azure Cognitive Search with the text from the underlying document. The function will process this text and respond with the entities found in that text.  These entities will then be stored in a separate Azure Cognitive Search Collection field.
+これを行うには、Azure Functions を使用して構築された「[カスタムスキル](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-web-api)」を活用します。基になるドキュメントのテキストを使用して、Azure Cognitive Search によって呼び出されます。Azure Functions はこのテキストを処理し、そのテキストで見つかったエンティティで応答します。これらのエンティティは、別のAzure Cognitive Search Collectionフィールドに格納されます。
 
-We will also be using some of the released [Power Skills](https://azure.microsoft.com/en-us/resources/samples/azure-search-power-skills/).  Power Skills are simply a collection of useful functions to be deployed as custom skills for Azure Cognitive Search that we have made available to accelerate development.  Check this repository frequently as new updates to the Power Skill set will be released.
+また、リリースされた[パワースキル](https://azure.microsoft.com/resources/samples/azure-search-power-skills/)の一部も使用します。 パワースキルは、Azure Cognitive Search のカスタムスキルとして展開される便利な機能集であり、開発を加速するために用意されています。パワースキルセットの新しいアップデートがリリースされるため、このリポジトリを頻繁に確認してください。
 
-## Creating the Azure Function
+## Azure Functions の作成
 
-The Azure Function will use a "dictionary" based technique to search the underlying text and respond with any terms or phrases that match what is stored in the dictionary.  With advances in ML and AI, there are much more advanced methods for doing this type of "named entity extraction", however in many cases this method often works quite well and is very simple to implement.  
+Azure Functions は、「辞書」ベースの手法を使用して、基礎となるテキストを検索し、辞書に格納されているものと一致する用語またはフレーズで応答します。MLとAIの進歩により、このタイプの「名前付きエンティティ抽出」を実行するためのより高度な方法がありますが、多くの場合、この方法は非常にうまく機能し、実装が非常に簡単です。
 
-To get started, we will clone the [Azure Search Power Skill](https://github.com/Azure-Samples/azure-search-power-skills) github repository: 
+開始するには、[Azure Cognitive Search パワースキル](https://github.com/nohanaga/azure-search-power-skills) githubリポジトリのクローンを作成します。
 ```
-  git clone https://github.com/Azure-Samples/azure-search-power-skills.git
+  git clone https://github.com/nohanaga/azure-search-power-skills.git
 ```
-Once you have downloaded this repository, open up the solution in Visual Studio.  
+このリポジトリをクローンしたら、Visual Studio でソリューションを開きます。
 
-In the Solution Explorer, locate the project "CustomEntityLookup" under the **Text** folder and open the **words.csv** file.
+ソリューションエクスプローラーで、**Text** フォルダーの下にあるプロジェクト "CustomEntityLookup" を見つけ、**words.csv** ファイルを開きます。
 
 ![](images/wordscsv.png)
 
-We are going to place our own dictionary of disease names into this file.    
+このファイルに独自の疾患名の辞書を配置します。
 
-Open [words.csv](./data) in your browser. It is located in the [/data](https://github.com/Azure-Samples/azure-search-knowledge-mining/tree/master/workshops/data) folder of this project. Copy the contents of that csv. Open the **words.csv** in your Visual Studio project and replace the existing content with the content that you just copied.
+ブラウザで [words.csv](./data) を開きます。このプロジェクトの [/data](https://github.com/nohanaga/azure-search-knowledge-mining/tree/master/workshops/data) フォルダーにあります。その csv の内容をコピーします。Visual Studio プロジェクトで **words.csv** を開き、既存のコンテンツを先ほどコピーしたコンテンツで置き換えます。
 
-  *NOTE: [words.csv](./data) is a small dictionary that is not fully vetted but it is more than adequate for the purposes of this lab*.
+  **注:** [words.csv](./data) は、完全に吟味されていない小さな辞書ですが、このラボの目的には十分すぎる量です。
 
-## Walking through the Azure Function code
+## Azure Function コードのウォークスルー
 
-The main code for this function can be found in the following file
+この関数のメインコードは次のファイルにあります。
 
 ### CustomEntityLookup.cs
 
-CustomEntityLookup is one of the Power Skill functions mentioned earlier.  Given a user-defined list of entities, this function will find all occurences of that entity in some input text.  
+CustomEntityLookup は、前述のパワースキル関数の1つです。エンティティのユーザー定義リストを指定すると、この関数は、一部の入力テキスト内のそのエンティティのすべての出現を検索します。
 
-Spend a bit of time walking through the code as there are a few interesting things to see in this file: 
+このファイルにはいくつか興味深い点があるので、コードを少し見てください。
 
 ![](images/lookup2.png)
 
-1) First you will notice a set of global variables used for configuration which can be updated prior to deploying the function, one of which is words.csv.
-2) Next, you will notice that you can set parameters to determine 'fuzziness' of matches, case sensitvity and default accent senstivity.
-3) A Regular Expression based mechanism is used to iterate through the text sent by the users to find phrases that match those of the dictionary.  
-4) The function returns a JSON document that contains both a set of found Entities as entities.
+1) 最初に、設定に使用されるグローバル変数のセットに気づくでしょう。これは、関数をデプロイする前に更新でき、words.csv の1つです。
+2) 次に、一致の「あいまいさ」、大文字と小文字の区別、デフォルトのアクセントの区別を決定するためのパラメーターを設定できることがわかります。
+3) 正規表現ベースのメカニズムを使用して、ユーザーが送信したテキストを反復処理して、辞書のフレーズと一致するフレーズを見つけます。
+4) この関数は、見つかったエンティティのセットの両方をエンティティとして含むJSONドキュメントを返します。
 
-## Testing the Azure Function
+## Azure Function をテストする
 
-We will first test the application locally.  
+最初にアプリケーションをローカルでテストします。
 
-1) Right click on CustomEntityLookup in the Solution Explorer and choose "Set as StartUp Project"
-2) Press F5 - NOTE: You may need to allow the function to run
-3) Once the function is running it should supply you with the URL to use for POST calls.  Copy this URL.
+1) ソリューションエクスプローラーで CustomEntityLookup を右クリックし、[スタートアップ アイテムとして設定]を選択します。
+2) F5キーを押します。注：関数の実行を許可する必要がある場合があります。
+3) 関数が実行されると、POST 呼び出しに使用する URL が提供されます。このURL をコピーします。
 
 ![](images/azurefunction.png)
 
 
-4) Open PostMan and click on **New** to create a new Request (you can add this to any collection you'd like)
-5) Enter the URL copied and change the request type from GET to POST.
+4) Postman を開き、[**+New**]をクリックして新しいリクエスト[Request]を作成します。（これを任意のコレクションに追加できます）
+5) コピーした URL を入力し、リクエストタイプを GET から POST に変更します。
 
 ![](images/postman2.png)
 
-5) Click **Body** and below that choose **raw** and paste in the following JSON:
+5) [**Body**]をクリックし、その下で[**raw**]を選択して、次の JSON に貼り付けます。
 
 ```json
   {
@@ -79,7 +79,7 @@ We will first test the application locally.
 }
 ```
 
-6) Press Send and you should get a response that looks like the following.  This is the format that the Azure Search Indexer expects to receive and will form the basis of the response for this Custom Skill.
+6) [**Send**]を押すと、次のような応答が返されます。これは、Azure Search Indexer が受信することを期待しているフォーマットであり、このカスタムスキルの応答の基礎を形成します。
 
 
 ```json
@@ -141,34 +141,35 @@ We will first test the application locally.
     ]
 }
 ```
-7) Optionally you can set breakpoints on the Azure Function app to get a better idea on how it works
-8) Return to Visual Studio and stop the running project.
+7) オプションで、Azure Function アプリにブレークポイントを設定して、それがどのように機能するかについてより良いアイデアを得ることができます。
+8) Visual Studio に戻り、実行中のプロジェクトを停止します。
 
-## Deploy the Azure Function
+## Azure Functions をデプロイする
 
-Now that we have a working Azure Function, we will deploy it to Azure.  
+Azure Functions が機能するようになったので、それをAzureにデプロイします。
 
-  *NOTE: If you prefer not to create your own resource (and resulting costs), you can skip this section and simply use a pre-deployed function with the following URL https://customentitylookup.azurewebsites.net/api/custom-entity-lookup?code=lJ69aIy1xmIauJgyowP5R8aHbD4GRUGGmVIUZVADk0OlKULHBawrhQ==
+  **注:** 独自のリソース（および結果として発生するコスト）を作成したくない場合は、このセクションをスキップして、次のURLで事前にデプロイされた関数を使用できます https://customentitylookup.azurewebsites.net/api/custom-entity-lookup?code=lJ69aIy1xmIauJgyowP5R8aHbD4GRUGGmVIUZVADk0OlKULHBawrhQ==
 
-To create your own Azure Function:
-1) In Solution Explorer, right click on the CustomEntityLookup project and choose: Publish
-2) Choose "Azure Functions Consumption Plan"
-3) Choose "Create New" and click "Publish"
-4) This will launch a page to load your subscription (or request you log in to your subscription)
+独自の Azure Functions を作成するには：
+1) ソリューションエクスプローラーで、CustomEntityLookupプロジェクトを右クリックし、[**公開**]を選択します。
+2) "Azure Functions Consumption Plan" を選択します。
+3) "Create New" を選択し、"Publish" をクリックします。
+4) これにより、サブスクリプションをロードするためのページが起動します（またはサブスクリプションへのログインを要求します）
 
 ![](images/new-appservice.png)
 
-5) After it has deployed, open the [Azure Portal](https://portal.azure.com) and locate this Azure Function.
-6) Choose "Get Function URL" and copy the full URL (including the code parameter)
+5) デプロイ後、[Azureポータル](https://portal.azure.com)を開き、この Azure Functions を見つけます。
+6) 「関数の URL を取得」を選択し、URL 全体（コードパラメータを含む）をコピーします。
 
 ![](images/function-url.png)
 
-7) Go back to Postman and replace the previous localhost request, with this new URL and press Send.  You should get the exact same result as above.
+7) Postman に戻り、以前の localhost リクエストをこの新しい URL に置き換えて、[Send] を押します。上記とまったく同じ結果が得られるはずです。
 
-## Azure Functions - Production vs Demo
-There are a number of items used above that are useful for development purposes, however not for production usage.  A few examples of this include:
-* Usage of the "code=" parameters in the above Azure Function is not a best practice for production, however, it is very convenient for development
-* We manually published the function, however, in production scenarios it would be far more realistic to leverage a Continuous Integration method of deployment
-* In the configuration of the function, we chose a consumption plan.  For production, you would want to take a closer look at usage, so that you can adjust the scale of the function, which very likely could be higher and might require a dedicated or scaled out environment.
+## Azure Functions - 本番環境 vs 開発環境
+上記で使用されている項目のいくつかは、開発目的には役立ちますが、本番用には使用できません。 このいくつかの例は次のとおりです。
 
-### Next: [Module 4: Learn the Object Model](Module&#32;4.md)
+* 上記のAzure関数で「code =」パラメーターを使用することは、本番環境ではベストプラクティスではありませんが、開発には非常に便利です。
+* この機能は手動で公開しましたが、運用シナリオでは、継続的インテグレーション方式の展開を活用する方がはるかに現実的です。
+* Function の構成では、コンサンプションプランを選択しました。本番環境では、使用量を詳しく調べて、Function のスケールを調整できるようにする必要があります。これは、より高い可能性が高く、専用またはスケールアウト環境が必要になる可能性があります。
+
+### 次：[モジュール4：オブジェクトモデルを学ぶ](Module&#32;4.md)
