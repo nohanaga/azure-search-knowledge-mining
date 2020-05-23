@@ -83,7 +83,7 @@ urlFragment: azure-search-knowledge-mining
 + [Module 1 - Azure Portalを使用して検索インデックスとナレッジストアを構築する](./workshops/Module%201.md)
 + [Module 2 - デモのフロントエンドで結果を視覚化する](./workshops/Module%202.md)
 + [Module 3 - カスタムスキルとAzure Functionsの概要](./workshops/Module%203.md)
-+ [Module 4 - オブジェクトモデルの学習](./Module%204.md)
++ [Module 4 - オブジェクトモデルの学習](./workshops/Module%204.md)
 + [Module 5 - 高度なAzure Cognitive Search：アナライザーとスコアリングプロファイル](./workshops/Module%205.md)
 + [Module 6 - PowerBIを使用したデータの分析](./workshops/Module%206.md)
 + [Module 7 - Azure Cognitive Searchを使用して構造化データのインデックスを作成する](./workshops/Module%207.md) (オプション)
