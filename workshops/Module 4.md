@@ -1,46 +1,45 @@
-# Module 4: Learn the Object Model
-*Note - In this set of exercises, you will be modifying the index created in module 1.  You will not be able to complete these steps until you have successfully completed all of Module 1.* 
+# モジュール4：オブジェクトモデルを学ぶ
+**注:** この一連の演習では、モジュール1で作成したインデックスを変更します。モジュール1をすべて完了するまで、これらの手順を完了することはできません。
 
-In this module you will learn about the 4 main objects that allow you to get data from your data source into the index:
-+ How to build and modify the index (object) programmatically. 
-+ How to modify the index you created in Module 1
+このモジュールでは、データソースからインデックスにデータを取得できる4つの主要なオブジェクトについて学習します。
++ プログラムでインデックス（オブジェクト）を作成および変更する方法。
++ モジュール1で作成したインデックスを変更する方法
 
-
-As you walked though the Import Data Wizard in Module 1, it created 4 resources for you:
+モジュール1のデータインポートウィザードの説明に沿って、4つのリソースを作成しました。
  
 ![](images/objectmodel.png)
 
-1.	The **data source** defines information about the source of your data (type of data source, how to read it, credentials, etc.)
-2.	The **skillset** defines any enrichment steps [or skills ] that you apply to your data. 
-3.	The **index** defines the shape of the searchable index.
-4.	Finally, these 3 objects are connected by an **indexer** that orchestrates the ingestion of data from the data source, execution of the skillset and how to map the enriched data into the index.
+1. **データソース**は、データのソースに関する情報を定義します（データソースの種類、データの読み取り方法、資格情報など）。
+2. **スキルセット**は、データに適用するエンリッチメントステップ（またはスキル）を定義します。
+3. **インデックス**は、検索可能なインデックスの形状を定義します。
+4. 最後に、これら3つのオブジェクトは、データソースからのデータの取り込み、スキルセットの実行、およびエンリッチされたデータをインデックスにマップする方法を調整する**インデクサー**によって接続されます。
 
-In this module we will modify these to add a bit of extra intelligence to the system. 
+このモジュールでは、これらを変更して、システムに少しインテリジェンスを追加します。
 
-## Index Definition.
-Let’s change the index definition. Please be very careful because you can only make additive changes to an index. So please double-check your work, as you may not be able to edit it if you make a mistake.
+## インデックスの定義
+インデックスの定義を変更してみましょう。インデックスには追加の変更しかできないため、十分に注意してください。間違えると編集できない場合がありますので、再確認してください。
 
-###	Inspect JSON in the portal. 
+### ポータルでJSONを検査します
 
 ![](images/jsonportal.png)
 
-Sometimes the portal makes it easy to make an edit. However we can also do it programmatically, which we will be doing by adding two new fields to the search index.
+ポータルにより、編集が簡単になる場合があります。ただし、プログラムで行うこともできます。これは、2つの新しいフィールドを検索インデックスに追加することで行います。
 
-The first field we will add will be called "diseases" and it will simply hold a collection of diseases extracted from the text.  That is the focus of the remainder of this module.  
+追加する最初のフィールドは「diseases」と呼ばれ、単にテキストから抽出された疾患のコレクションを保持します。それがこのモジュールの残りの部分の焦点です。
 
-The second field, called "diseasesPhonetic" will also hold the diseases extracted, however, it will use something called a Phonetic analyzer, which is one of the many Custom Analyzers that Azure Cognitive Search makes available to users.  As you might guess, the Phonetic analyzer allows you to search for words that sounds phonetically similar - we will be adding this field and exploring the phonetic analyzer further in Module 5.  
+「diseasesPhonetic」と呼ばれる2番目のフィールドにも抽出された疾患が保持されますが、Azure Cognitive Search がユーザーに提供する多くのカスタムアナライザーの1つである音声アナライザーと呼ばれるものを使用します。ご想像のとおり、音声分析では音声学的に類似していると思われる単語を検索できます。このフィールドを追加し、モジュール5でさらに音声分析を探索します。
 
-We can first retrieve the current index schema by opening Postman and making the following GET request:
+まず Postman を開いて次の GET リクエストを行うことで、現在のインデックススキーマを取得できます。
 ```
 GET https://{name of your service}.search.windows.net/indexes/clinical-trials-small?api-version=2019-05-06
 ```
-For all of the subsequent requests, you will need to set the following two headers values:
-* api-key: [Enter Admin API Key from Azure Cognitive Search portal]
+以降のすべてのリクエストでは、次の2つのヘッダー値を設定する必要があります。
+* api-key: [Azure Cognitive Search ポータルから管理者キーを入力します]
 * Content-Type: application/json
 
 ![](images/get-index-schema.png)
 
-Copy the index schema that was returned with the GET request into the Body. Update the copied content in the Body by adding a new field:
+GET リクエストで返されたインデックススキーマを[**Body**]にコピーします。新しいフィールドを追加して、[**Body**]のコピーされたコンテンツを更新します。
 
 ```json
 "fields": [
@@ -63,17 +62,17 @@ Copy the index schema that was returned with the GET request into the Body. Upda
 ]
 ```
 
-Change the request to be a PUT with the following request structure. Send the request to update the index.
+次のリクエスト構造を持つリクエストを PUT に変更します。 インデックスを更新するリクエストを送信します。
 
 ```
 PUT  https://{name of your service}.search.windows.net/indexes/clinical-trials-small?api-version=2019-05-06
 ``` 
 
-If the PUT request is successful you will be returned a status code of 204. This indicates that the index updated successfully. There will be no content in the Body of the response.
+PUT リクエストが成功すると、ステータスコード 204 が返されます。これは、インデックスが正常に更新されたことを示します。レスポンスの Body にはコンテンツはありません。
 
-Now let’s modify the skillset to incorporate the disease extractor we built in Module 3.
+次に、モジュール3で構築した疾患抽出器を組み込むようにスキルセットを変更します。
 
-First, let’s inspect what our skillset definition looks like. Bring up POSTMAN, and issue this request:
+まず、スキルセットの定義がどのようなものかを見てみましょう。Postman を呼び出し、次のリクエストを発行します。
 
 ```
 GET  https://{name-of-your-service}.search.windows.net/skillsets/clinical-trials-small?api-version=2019-05-06-Preview
@@ -81,33 +80,33 @@ GET  https://{name-of-your-service}.search.windows.net/skillsets/clinical-trials
 
  ![](images/postman.png)
 
-Make sure to set the **api-key header**  based on the key you can get from the portal.
+ポータルから取得できるキーに基づいて **api-key header** を設定してください。
 
-Also, note that we are using the **2019-05-06-Preview** version because we are using the Knowledge Store preview feature.
+また、ナレッジストアのプレビュー機能を使用しているため、**2019-05-06-Preview** バージョンを使用していることに注意してください。
 
-First let’s inspect the JSON.  You will notice many skills were automatically generated. There should be 4 skills that follow this general pattern:
+まず、JSONを見てみましょう。多くのスキルが自動的に生成されたことがわかります。この一般的なパターンに従う4つのスキルがあるはずです。
 
  ![](images/4skills.png)
  
-###	Add a new custom skill.
-We’ll add a step to the enrichment pipeline that extracts diseases, we’ll define where that field get saved in the index and modify the indexer as well.
+###	新しいカスタムスキルを追加します
+疾患を抽出するステップをエンリッチメントパイプラインに追加し、そのフィールドがインデックスに保存される場所を定義し、インデクサーも変更します。
 
 ![](images/diseaseextractor.png)
 
 
-We’ll create a PUT request to edit the skillset.
+スキルセットを編集するための PUT リクエストを作成します。
 
 ```
 PUT    https://{your-service-here}.search.windows.net/skillsets/clinical-trials-small?api-version=2019-05-06-Preview 
 ```
 
-We’ll modify the skills list, and also add the diseases to our table projections.
+スキルリストを変更し、病気をテーブル予測に追加します。
 
-###	Add the additional skill to the skillset that will extract the disease list for each document
+###	各ドキュメントの疾患リストを抽出するスキルに追加のスキルを追加します
 
-Paste the response we got from the GET request, and add the additional skill. 
+GET リクエストから取得したレスポンスを貼り付けて、スキルを追加します。
 
-To get the URI, you will need to get it from the published skill you tested in module 3, but this is what it looked like for our test skill…
+URI を取得するには、モジュール3でテストした公開済みのスキルから取得する必要がありますが、これは私たちのテストスキルでは次のようになりました…
 
 ```
          {
@@ -134,9 +133,9 @@ To get the URI, you will need to get it from the published skill you tested in m
             ]
         }
 ```
-###  Add a new record to the Shaper Skill, and add a new Table Projection
+###  Shaper スキルに新しいレコードを追加し、新しいテーブルプロジェクションを追加する
 
-#### Add a new diseases input into the Shaper Skill.
+#### Shaper スキルに新しい病気の入力を追加します
 
 ```
         {
@@ -163,7 +162,7 @@ To get the URI, you will need to get it from the published skill you tested in m
                 },
 ...
 ```
-Remember that *document/diseases* refers to an array of complex types, something like this:
+*document/diseases* は、次のような複合型の配列を指すことに注意してください。
 ```
 "document/diseases": 
 [
@@ -193,14 +192,15 @@ Remember that *document/diseases* refers to an array of complex types, something
 ]
 
 ```
-and */document/diseases/** refers to the each of the members of that array -- each of those complex types.
 
-This skill is shaping a new complex object called *tableprojection* that will have many members.
-You have just added a new member to it called *diseases*. 
+また、*/document/diseases/** は、その配列の各メンバー（これらの複合型のそれぞれ）を指します。
 
-Since the "sourceContext" for this new member is *"/document/diseases/\*"* , the new member itself will be an array of objects. Each of these objects will have a single member called *disease* with the name of each disease. 
+このスキルは、多くのメンバーを持つ *tableprojection* と呼ばれる新しい複雑なオブジェクトを形成します。
+*diseases* という新しいメンバーを追加しました。
 
-It's json representation would look something like this:
+この新しいメンバーの "sourceContext" は *"/document/diseases/\*"* なので、新しいメンバー自体はオブジェクトの配列になります。これらの各オブジェクトには、*disease* という単一のメンバーがあり、各疾患の名前が付いています。
+
+JSON 表現は次のようになります。
 
 ```
 "document/tableprojection" :
@@ -218,11 +218,11 @@ It's json representation would look something like this:
 }
 ```
 
-#### Modify the table projections to include this new field, as shown below:
+#### 以下に示すように、この新しいフィールドを含めるようにテーブルプロジェクションを変更します
 
-Some tools like PowerBI know how to ingest tables and databases better than if we fed it a bunch of JSON objects.  Now that we have an object with the shape that we want, we will **project** it into a set of tables that will be correlated.
+PowerBI のような一部のツールは、JSON オブジェクトを一括で与えた場合よりも、テーブルとデータベースを取り込む方法をよく理解しています。これで、目的の形のオブジェクトができたので、相関させる一連のテーブルに**投影**します。
 
-Let's add one more table to the list for our new diseases member. 
+新しい病気のメンバーのリストにテーブルをもう1つ追加しましょう。
 
 ```
          "projections": [
@@ -253,24 +253,25 @@ Let's add one more table to the list for our new diseases member.
                 "objects": []
             }
 ```
-When we do this, each disease extracted will be given a unique identifier (*Diseaseid*). Since "/document/tableprojection/diseases/\*" is a child of "/document/tableprojection", the diseases table will automatically also get column called "Documentid".
+これを行うと、抽出された各疾患に一意の識別子(*Diseaseid*) が付与されます。"/document/tableprojection/diseases/\*" は "/document/tableprojection" の子であるため、病気のテーブルには「Documentid」という列も自動的に取得されます。
 
-After you have made these changes, complete the PUT request.
+これらの変更を行った後、PUT リクエストを完了します。
 
 ```
 PUT https://{your-service-name-goes-here}.search.windows.net/skillsets/clinical-trials-small?api-version=2019-05-06-Preview
 ```
-It is important that you use version 2019-05-06-Preview because the knowledge store projections are still in Preview mode.
+ナレッジストアの予測はまだプレビューモードであるため、バージョン 2019-05-06-Preview を使用することが重要です。
 
-*Note that you can create, get, edit and delete each of the resources (index, data source, indexer, skillset) using REST APIs, just like you did with the skillset*.
+*スキルセットで行ったのと同じように、REST APIを使用して各リソース（インデックス、データソース、インデクサー、スキルセット）を作成、取得、編集、および削除できます*。
 
-### Update the Output Field Mappings in the Indexer
+### インデクサーの出力フィールドマッピングを更新する
 
-Now we’ll follow a similar process to get and modify the Indexer.  The Indexer is the element that glues everything together. 
+次に、同様のプロセスに従ってインデクサーを取得および変更します。 インデクサーは、すべてを一緒に接着する要素です。
 
-Add this **outputFieldMapping to the indexer**. This will specify where in the index we should store the diseases we just extracted. Make sure to do this in the *output field mappings* and not on the *field mappings*. *Field mappings* occur before enrichment, and *output field mappings* occurs post enrichment.
+**outputFieldMapping to the indexer** を追加します。これにより、抽出した疾患をインデックスのどこに保存するかが指定されます。これは、**フィールドマッピング**ではなく、**出力フィールドマッピング**で行ってください。**フィールドマッピング**はエンリッチメントの前に発生し、**出力フィールドマッピング**はエンリッチメントの後に発生します。
 
-Do a GET and then a PUT with
+GET を実行し、次に PUT を使用して、
+
 ```
 https://{your-service-name-goes-here}.search.windows.net/indexers/clinical-trials-small?api-version=2019-05-06
 ```
@@ -286,28 +287,30 @@ https://{your-service-name-goes-here}.search.windows.net/indexers/clinical-trial
 	...
  ```
 
-This will map each of the names of the diseases complex types into a flat array (i.e. \["diabetes", "morquio", ...\] )
+これは、複雑な病気のタイプの名前のそれぞれをフラットな配列にマッピングします（つまり、\["diabetes", "morquio", ...\]）
 
-Now, let’s reprocess documents. Go to the portal to **RESET** your Indexer and re **RUN** it.
+次に、ドキュメントを再処理します。ポータルにアクセスしてインデクサーを**リセット**し、再度**実行**してください。
 
  ![](images/rerun.png)
  
-## Search Resulting Data
+## 検索結果のデータ
  
-It will take a little time to index the resulting content, however we can go to the "Search Explorer" from the portal and start looking at the resulting data.  
+結果のコンテンツのインデックス作成には少し時間がかかりますが、ポータルから「検索エクスプローラー」に移動して、結果のデータを確認することができます。
 
-From your Azure Cognitive Search service, choose Indexes and then click on the index you have been working with in this module.
-In the query string, enter: 
+Azure Cognitive Search サービスから[**インデックス**]を選択し、このモジュールで使用していたインデックスをクリックします。
+
+クエリ文字列に、次のように入力します。
 
 ```
 search=*&facet=diseases
 ```
-This tells the search engine to search all documents (*) and group the results by diseases.
+これは、検索エンジンにすべてのドキュメント(*)を検索し、結果を疾患別にグループ化するように指示します。
 
-Let's also use this new field to allow us to do a strict filter to any documents that talk about the disease "morquio"
+この新しいフィールドを使用して、病気「morquio」について語っているドキュメントを厳密にフィルターできるようにします。
+```
 search=*&$filter=diseases/any(disease: disease eq 'morquio')&$select=metadata_title,diseases
-
-Try adjusting this query to only include documents that talk about 'morquio' and do not talk about 'chest pain'
+```
+このクエリを調整して、「morquio」について語り、「chest pain」について語らないドキュメントのみを含めるようにしてください。
 
 <details>
   <summary>Click for the answer</summary>
@@ -320,4 +323,4 @@ Try adjusting this query to only include documents that talk about 'morquio' and
   </p>
 </details>
 
-### Next: [Module 5: Advanced Cognitive Search](Module&#32;5.md)
+### 次：[モジュール5：高度なAzure Cognitive Search](Module&#32;5.md)
