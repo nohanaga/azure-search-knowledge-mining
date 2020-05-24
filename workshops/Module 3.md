@@ -51,7 +51,7 @@ CustomEntityLookup は、前述のパワースキル関数の1つです。エン
 
 最初にアプリケーションをローカルでテストします。
 
-1) ソリューションエクスプローラーで CustomEntityLookup を右クリックし、[スタートアップ アイテムとして設定]を選択します。
+1) ソリューションエクスプローラーで CustomEntityLookup を右クリックし、[スタートアップ プロジェクトとして設定]を選択します。
 2) F5キーを押します。注：関数の実行を許可する必要がある場合があります。
 3) 関数が実行されると、POST 呼び出しに使用する URL が提供されます。このURL をコピーします。
 
@@ -151,15 +151,15 @@ Azure Functions が機能するようになったので、それを Azure にデ
   **注:** 独自のリソース（および結果として発生するコスト）を作成したくない場合は、このセクションをスキップして、次のURLで事前にデプロイされた関数を使用できます https://customentitylookup.azurewebsites.net/api/custom-entity-lookup?code=lJ69aIy1xmIauJgyowP5R8aHbD4GRUGGmVIUZVADk0OlKULHBawrhQ==
 
 独自の Azure Functions を作成するには：
-1) ソリューションエクスプローラーで、CustomEntityLookupプロジェクトを右クリックし、[**公開**]を選択します。
-2) "Azure Functions Consumption Plan" を選択します。
-3) "Create New" を選択し、"Publish" をクリックします。
+1) ソリューションエクスプローラーで、CustomEntityLookupプロジェクトを右クリックし、[**発行**]を選択します。
+2) "Azure Functions の従量課金制プラン" を選択します。
+3) "新規作成" を選択し、"プロファイルの作成" をクリックします。
 4) これにより、サブスクリプションをロードするためのページが起動します（またはサブスクリプションへのログインを要求します）
 
 ![](images/new-appservice.png)
 
-5) デプロイ後、[Azureポータル](https://portal.azure.com)を開き、この Azure Functions を見つけます。
-6) 「関数の URL を取得」を選択し、URL 全体（コードパラメータを含む）をコピーします。
+5) デプロイ後、[Azure ポータル](https://portal.azure.com)を開き、この Azure Functions を見つけます。
+6) 「関数の URL の取得」を選択し、URL 全体（コードパラメータを含む）をコピーします。
 
 ![](images/function-url.png)
 
