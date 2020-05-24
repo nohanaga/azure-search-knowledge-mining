@@ -33,7 +33,7 @@ git clone https://github.com/nohanaga/azure-search-knowledge-mining.git
  
 ### Notes
 1. **SearchServiceName** 検索サービスの名前に設定する必要があります。(例："myservice")
-1. **SearchApiKey** 検索サービスのキーにする必要があります。(例："B8365AC95521089B7E3FA4CC98435")
+1. **SearchApiKey** 検索サービスの管理者キーにする必要があります。(例："B8365AC95521089B7E3FA4CC98435")
 1. **SearchIndexName** インデックスの名前に設定する必要があります。 (例："clinical-trials-small")
 1. **StorageAccountName** ストレージアカウントの名前に設定する必要があります。(例："mystorageaccount")
 1. **StorageAccountKey** ストレージアカウントのアクセスキーにする必要があります。(例："xatMbKSaPcsII36SyZgmXAsY0kWCo/waIo55i8MsMYgLEbMDY1PEBn+c9O6WnEEDhfOGJvYKAsjspvZDgRLGzr==")
