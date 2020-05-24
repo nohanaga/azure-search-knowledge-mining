@@ -12,31 +12,31 @@
 
 4. [Azure Storage Account](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal) を**作成**します。
 
-   - パフォーマンスの選択：プレミアムではなく **標準**
+   - パフォーマンスの選択：Premium ではなく **Standard**
    - アカウントの種類を選択：**StorageV2（汎用v2）**
 
 4. [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) を**インストール**します。
 4. 臨床試験を保持するストレージコンテナーを読み取り専用の場所からストレージアカウントに**コピー**します。
-    1. Azure Storage Explorer を開いて、*Managed Accounts*、*Add and Account ...*、*Use a shared access signature（SAS）URI* を選択します。*表示名*は自動入力されます。 [*次へ*]を選択します
+    1. Azure Storage Explorer を開いて、**アカウントの管理**、**アカウントを追加する...**、**Shared Access Signature (SAS) URIを使用する** を選択します。*表示名*は自動入力されます。 [*次へ*]を選択します
     1. 次の *URI*を**追加**してから、**次へ**を選択し、次に**接続**を選択します。
         ```
         https://kmworkshop.blob.core.windows.net/clinical-trials-small?st=2019-09-13T22%3A58%3A18Z&se=2020-09-14T22%3A58%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=M7MPfuxZvVvBkf0Jgg%2BvKWyB49RFYlGNhQ4%2F1nIJ9DU%3D
         ```
-    3. エクスプローラーを表示するために、**エクスプローラーを切り替える** を選択します。 接続したばかりの *clinical-trials-small* Blobコンテナーを右クリックし、*Copy Blob Container* を選択します。
+    3. エクスプローラーを表示するために、**エクスプローラーを切り替える** を選択します。 接続したばかりの *clinical-trials-small* Blobコンテナーを右クリックし、**BLOB コンテナーのコピー** を選択します。
 
         ![](images/copyblobcontainer.png)
         
-    3. エクスプローラーでストレージアカウントを**検索**します。 **Blobコンテナー**を右クリックし、**Blobコンテナーを貼り付け** を選択します。
+    3. エクスプローラーで本ワークショップで使用するストレージアカウントを**検索**します。 **Blob Containers** を右クリックし、**BLOB コンテナーを貼り付け** を選択します。
 
         ![](images/pasteblobcontainer.png)
 
     1. Azure Storage Explorer の下部にあるアクティビティをチェックして、コンテナーが正常にコピーされたことを確認します。
 
-4.	[Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-create-service-portal) リソースを**作成**します。（このワークショップには無料枠で十分です）[価格表](https://docs.microsoft.com/azure/search/search-sku-tier)
+4.	[Azure Cognitive Search](https://docs.microsoft.com/azure/search/search-create-service-portal) リソースを**作成**します。（このワークショップには無料枠で十分です）[参考：価格表](https://docs.microsoft.com/azure/search/search-sku-tier)
 
 4.	[Cognitive Services](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account?tabs=multiservice%2Cwindows) リソースを**作成**します。
 
-    **注**: *Azure Cognitive Searchリソースと同じリージョンにCognitive Servicesリソースを作成する必要があります。*
+    **注**: *Azure Cognitive Search リソースと同じリージョンに Cognitive Services リソースを作成する必要があります。*
 
 10.	[Visual Studio 2019](https://visualstudio.microsoft.com/) を**インストール**します。それでASP.Net Webサイトを作成できることを確認してください。
 11.	[Postman](https://www.getpostman.com/) を**インストール**します。
