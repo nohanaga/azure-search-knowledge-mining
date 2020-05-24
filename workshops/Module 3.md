@@ -158,6 +158,9 @@ Azure Functions が機能するようになったので、それを Azure にデ
 
 ![](images/new-appservice.png)
 
+![](images/new-appservice2.png)
+
+
 5) デプロイ後、[Azure ポータル](https://portal.azure.com)を開き、この Azure Functions を見つけます。
 6) 「関数の URL の取得」を選択し、URL 全体（コードパラメータを含む）をコピーします。
 
