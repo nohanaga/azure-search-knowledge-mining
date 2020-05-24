@@ -36,6 +36,7 @@ git clone https://github.com/nohanaga/azure-search-knowledge-mining.git
 1. **SearchApiKey** 検索サービスのキーにする必要があります。(例："B8365AC95521089B7E3FA4CC98435")
 1. **SearchIndexName** インデックスの名前に設定する必要があります。 (例："clinical-trials-small")
 1. **StorageAccountName** ストレージアカウントの名前に設定する必要があります。(例："mystorageaccount")
+1. **StorageAccountKey** ストレージアカウントのアクセスキーにする必要があります。(例："xatMbKSaPcsII36SyZgmXAsY0kWCo/waIo55i8MsMYgLEbMDY1PEBn+c9O6WnEEDhfOGJvYKAsjspvZDgRLGzr==")
 1. **StorageContainerAddress** 次の形式にする必要があります: *"https://*storageaccountname*.blob.core.windows.net/*containername*"*
 1. **InstrumentationKey** はオプションのフィールドです。インストルメンテーションキーは、Power BIレポートにデータを入力するために、Webアプリを Application Insights に接続します。
 1. **KeyField** インデックスでキードキュメントIDとして指定されたフィールドに設定する必要があります。(例："metadata_storage_path")
