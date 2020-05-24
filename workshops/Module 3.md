@@ -148,7 +148,7 @@ CustomEntityLookup は、前述のパワースキル関数の1つです。エン
 
 Azure Functions が機能するようになったので、それを Azure にデプロイします。
 
-  **注:** 独自のリソース（および結果として発生するコスト）を作成したくない場合は、このセクションをスキップして、次のURLで事前にデプロイされた関数を使用できます 
+  **注:** 独自のリソース（および結果として発生するコスト）を作成したくない場合は、このセクションをスキップして、次のURLで事前にデプロイされた関数を使用できます。以下の URL に対して POST すれば Azure Functions にデプロイしたサービスと同じ結果が得られます。
   
 ```
 https://customentitylookup.azurewebsites.net/api/custom-entity-lookup?code=lJ69aIy1xmIauJgyowP5R8aHbD4GRUGGmVIUZVADk0OlKULHBawrhQ==
