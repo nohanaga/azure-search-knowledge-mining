@@ -144,7 +144,7 @@ gaucher&highlight=content&$count=true
 
 Azure ポータルで検索サービスを開き、[キー]を選択して、使用可能な管理者キーの1つをコピーすることで、APIキーを取得できます。
 
-コンテンツのインデックス作成を構成するときに、コンテンツから抽出する場所を要求しました。モルキオ病を検索し、結果を metadata_title、locations フィールドのみを返すように制限して、これを見てみましょう。{サービスの名前}を検索サービスの名前で更新することを忘れないでください。
+コンテンツのインデックス作成を構成するときに、コンテンツから抽出する場所を要求しました。モルキオ病を検索し、結果を metadata_title、locations フィールドのみを返すように制限して、これを見てみましょう。*{name of your service}* を検索サービスの名前で更新することを忘れないでください。
 ```
 GET https://{name of your service}.search.windows.net/indexes/clinical-trials-small/docs?api-version=2019-05-06&search=morquio&$select=metadata_title,locations
 ```
