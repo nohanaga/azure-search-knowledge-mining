@@ -17,7 +17,7 @@ Cognitive Searchは、カスタムスキルの構築に使用するツールに�
 一般に、使用されるカスタムスキルには2つのタイプがあります。
 
 ### 1.0 Azure Functionsのカスタムスキル
-Azure Functionsのデプロイは、カスタムスキルを作成する最も簡単な方法です。 [サンプルスキル](../03%20-%20Data%20Science%20and%20Custom%20Skills/Azure%20Function%20Custom%20Skills)プロジェクトは、C#でのAzure Functionsのテンプレートといくつかの例を提供します。 Azure Functionsは、MLモデルを必要としないスキルをデプロイするための推奨アプローチです。
+Azure Functionsのデプロイは、カスタムスキルを作成する最も簡単な方法です。 [サンプルスキル](https://github.com/nohanaga/azure-search-power-skills)プロジェクトは、C#でのAzure Functionsのテンプレートといくつかの例を提供します。 Azure Functionsは、MLモデルを必要としないスキルをデプロイするための推奨アプローチです。
 
 ### 2.0 Azure Machine Learningのカスタムスキル
 MLモデルを使用して、Cognitive Searchパイプラインを強化できます。このテンプレートでは、Azure Machine Learningを使用してモデルを構築およびデプロイします。AMLカスタムスキルテンプレートは、カスタムスキルとして使用されるモデルを迅速に展開するために必要なファイルを提供します。
