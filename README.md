@@ -70,7 +70,7 @@ urlFragment: azure-search-knowledge-mining
 カスタムスキル開発のその他のサンプルと情報については、[カスタムスキルのドキュメント](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface)を参照してください。.NET Azure Functions のカスタムスキルは、[パワースキルリポジトリ](https://github.com/nohanaga/azure-search-power-skills)に移動しました。
 
 #### [03.1 - 日本語OCR向けカスタムスキル](https://github.com/nohanaga/azure-search-japanese-ocr-tips/)
- このセクションでは、Azure Cognitive Search で OCR スキルを実行した場合に生じる文字分割問題を解決するカスタムスキルが含まれています。
+ このセクションでは、Azure Cognitive Search で日本語 OCR スキルを実行した場合に生じる文字分割問題を解決するカスタムスキルが含まれています。
 
 ### [04 - レポーティング](./04%20-%20Reporting)
 このフォルダーには、ソリューションを監視し、ユーザーの検索動作を理解するために使用できるビルド済みの PowerBI レポートが含まれています。これらは、[Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/app-insights-overview) を通じてキャプチャされたデータを活用し、特定のビジネス目標に合わせて変更できます。この手順は完全にオプションであり、不要な場合はスキップできます。
