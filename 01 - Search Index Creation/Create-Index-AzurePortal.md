@@ -17,6 +17,7 @@ Azure Portal経由でインデックスを作成する場合は、次の表の�
 |locations				| ドキュメントで識別された場所を含む文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
 |organizations			| ドキュメントで識別された組織の文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
 |keyPhrases				| ドキュメントで識別されたキーフレーズを含む文字列のリスト。**facetable、filterable、searchable、retrievable** である必要があります。  |
+|language				| 文書のメイン言語を含む文字列。**facetable、filterable、searchable、retrievable** である必要があります。  |
 
 ## 解説
 
@@ -39,16 +40,19 @@ Azure Portal経由でインデックスを作成する場合は、次の表の�
 ![screenshot](../images/createindex-step2.PNG)
 
 #### 3.2 ウィザードに従ってストレージアカウントに接続します
+デフォルトのままで、`Choose an existing connection` を使ってストレージコンテナにデータを接続します。
 
 ![screenshot](../images/createindex-step3.PNG)
 
 ### 4.0 Cognitiveスキルを追加する
 
 #### 4.1 Cognitive Servicesをアタッチする
+Cognitive Services リソースは自動的にプロビジョニングされているはずなので、それを選択してください。プロビジョニングに成功していない場合は、`Create new Cognitive Services resource` リンクを使用して作成してください。
 
 ![screenshot](../images/createindex-step4.PNG)
 
 #### 4.2 エンリッチメントを追加する
+追加したいエンリッチメントを選択します。なお、`個人を特定できる情報を抽出する`スキルは、現在のところ英語の文書にしか対応していません。サンプルデータの中には現在異なる言語のものもありますので、このレポジトリの [sample documents](../sample_documents) を利用する際には有効にしないようにしてください。
 
 ![screenshot](../images/createindex-step5.PNG)
 

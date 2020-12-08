@@ -34,5 +34,9 @@ PowerBIテンプレートファイルが作成されたため、Cognitive Search
 ## 追加資料
 PowerBIの詳細とPowerBIでのレポートの開発については、[Power BIとは](https://docs.microsoft.com/power-bi/power-bi-overview)を参照してください。
 
+または、Azure Cognitive Searchに自動的に含まれている新しいPower BIレポートを使用することもできます。これにアクセスするには、サブスクリプションの検索インスタンスに移動し、`検索トラフィックの分析`に移動し、`Power BI レポートのダウンロード`を選択します。
+
+どちらのレポートも同等の機能を備えており、より洗練されたダッシュボードを開発するために使用できます。
+
 ## Special Thanks 
 このPBIテンプレートを作成してくれた Emilio D'Angelo に特に感謝します。

@@ -11,7 +11,7 @@
     3. 検索インデックスを作成する
     4. Webアプリの *appsettings.json* に必要な値とキーを出力します
 
-    このスクリプトを実行する場合は、2で説明している検索インデックスの作成をスキップできます。
+    このスクリプトを実行する場合は、2で説明している **検索インデックスの作成** をスキップできます。
 
 2. **ARMテンプレートを使用する**: `azuredeploy.json`
 
@@ -19,13 +19,15 @@
 
     > これはリソースのみをデプロイすることに注意してください。 次のステップで検索インデックスを作成する必要があります。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fnohanaga%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json" target="_blank">
-        <img src="http://azuredeploy.net/deploybutton.png"/>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json" target="_blank">
+        <img src="https://azuredeploy.net/deploybutton.png"/>
     </a>
 
 ## 前提条件
 
 1. Azureサブスクリプションへのアクセス
+
+PowerShellスクリプトを実行している場合は、[Az PowerShellモジュール](https://docs.microsoft.com/powershell/azure/install-az-ps)もインストールする必要があります。
 
 ## PowerShellスクリプトの実行
 

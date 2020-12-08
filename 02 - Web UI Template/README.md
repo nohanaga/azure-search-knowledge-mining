@@ -12,7 +12,7 @@ Cognitive Searchテンプレートには、2つのプロジェクトが含まれ
 
 ## 前提条件
 
-1. Visual Studio 2017以降
+1. Visual Studio 2019以降 - [Download](https://visualstudio.microsoft.com/downloads/)
 
 ## 1. appsettings.jsonを更新する
 

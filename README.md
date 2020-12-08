@@ -52,9 +52,7 @@ urlFragment: azure-search-knowledge-mining
 
 または、このボタンを使用して、必要なリソースを自動的にデプロイすることもできます。
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fnohanaga%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a> 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-knowledge-mining%2Fmaster%2Fazuredeploy.json)
 
 ### [01 - 検索インデックスの作成](./01%20-%20Search%20Index%20Creation)
 このフォルダーには、検索インデックスの作成に使用できる Postman コレクションが含まれています。コレクションは、すぐに使用できる Cognitive Search 機能を利用するように事前構成されています。

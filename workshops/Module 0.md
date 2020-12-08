@@ -12,8 +12,8 @@
 
 4. [Azure Storage Account](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal) を**作成**します。
 
-   - パフォーマンスの選択：Premium ではなく **Standard**
-   - アカウントの種類を選択：**StorageV2（汎用v2）**
+    * パフォーマンスの選択：Premium ではなく **Standard**
+    * アカウントの種類を選択：**StorageV2（汎用v2）**
 
 4. [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/) を**インストール**します。
 4. 臨床試験を保持するストレージコンテナーを読み取り専用の場所からストレージアカウントに**コピー**します。
@@ -38,7 +38,7 @@
 
     **注**: *Azure Cognitive Search リソースと同じリージョンに Cognitive Services リソースを作成する必要があります。*
 
-10.	[Visual Studio 2019](https://visualstudio.microsoft.com/) を**インストール**します。それでASP.Net Webサイトを作成できることを確認してください。
+10.	[Visual Studio 2019](https://visualstudio.microsoft.com/) を**インストール**します。これで ASP.Net の Web サイトが作れることを確認しましょう。今回は .NET Core 3.1 を使用します。
 11.	[Postman](https://www.getpostman.com/) を**インストール**します。
 11.	[PowerBI desktop](https://powerbi.microsoft.com/desktop/) を**インストール**します。
 
